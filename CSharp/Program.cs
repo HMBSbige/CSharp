@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace CSharp
 {
-	static class Program
+	internal class Program
 	{
 		private static int[][] JaggedArrayCreate()
 		{
@@ -43,48 +43,55 @@ namespace CSharp
 			}
 		}
 
-		static void Main(string[] args)
+		private delegate void VoidMethod();
+
+		private static double BenchMark(VoidMethod method)
 		{
 			var stopwatch = new Stopwatch();
-			int[][] a = JaggedArrayCreate();
-			int[,] b = MultidimensionalArrayCreate();
-			const int n = 1000000;
-			//Jagged Arrays
 			stopwatch.Start();
-			for (var i = 0; i < n; ++i)
-			{
-				a = JaggedArrayCreate();
-			}
+			method();
 			stopwatch.Stop();
-			Console.WriteLine(@"交错数组创建：" + stopwatch.ElapsedTicks);
+			return stopwatch.ElapsedTicks / (double) Stopwatch.Frequency;
+		}
 
-			stopwatch.Reset();
-			stopwatch.Start();
-			for (var i = 0; i < n; ++i)
+		static void Main(string[] args)
+		{
+			var a = JaggedArrayCreate();
+			var b = MultidimensionalArrayCreate();
+			const int n = 10000000;
+			//Jagged Arrays
+			Console.WriteLine(@"交错数组创建：" + BenchMark(() =>
 			{
-				JaggedArrayWrite(ref a);
-			}
-			stopwatch.Stop();
-			Console.WriteLine(@"交错数组写：" + stopwatch.ElapsedTicks);
+				for (var i = 0; i < n; ++i)
+				{
+					a = JaggedArrayCreate();
+				}
+			}));
+
+			Console.WriteLine(@"交错数组写：" + BenchMark(() =>
+			{
+				for (var i = 0; i < n; ++i)
+				{
+					JaggedArrayWrite(ref a);
+				}
+			}));
 
 			//Multidimensional Arrays
-			stopwatch.Reset();
-			stopwatch.Start();
-			for (var i = 0; i < n; ++i)
+			Console.WriteLine(@"二维数组创建：" + BenchMark(() =>
 			{
-				b = MultidimensionalArrayCreate();
-			}
-			stopwatch.Stop();
-			Console.WriteLine(@"二维数组创建：" + stopwatch.ElapsedTicks);
+				for (var i = 0; i < n; ++i)
+				{
+					b = MultidimensionalArrayCreate();
+				}
+			}));
 
-			stopwatch.Reset();
-			stopwatch.Start();
-			for (var i = 0; i < n; ++i)
+			Console.WriteLine(@"二维数组写：" + BenchMark(() =>
 			{
-				MultidimensionalArrayWrite(ref b);
-			}
-			stopwatch.Stop();
-			Console.WriteLine(@"二维数组写：" + stopwatch.ElapsedTicks);
+				for (var i = 0; i < n; ++i)
+				{
+					MultidimensionalArrayWrite(ref b);
+				}
+			}));
 		}
 	}
 }
