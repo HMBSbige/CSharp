@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csp
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common", "Common\Common.shproj", "{264C4DA2-7511-441A-AAA3-01D3207888C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminButtonDemo", "AdminButtonDemo\AdminButtonDemo.csproj", "{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Common\Common.projitems*{264c4da2-7511-441a-aaa3-01d3207888c3}*SharedItemsImports = 13
@@ -21,6 +23,10 @@ Global
 		{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
