@@ -9,9 +9,8 @@ namespace CSharp
 	{
 		private static void Main(string[] args)
 		{
-			var version2 = WindowsVersion.GetOSVersion().ToVersionString();
+			var version2 = Reg.Exist(@"计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", @"AUOptions");
 			Console.WriteLine(version2);
-			Console.WriteLine(Convert.ToDouble(WindowsVersion.GetOSSimpleVersion()));
 			Console.WriteLine(@"END OF FILE");
 		}
 	}

@@ -24,13 +24,21 @@ namespace FWin10
 		private bool _isWin10;
 		private void Reflesh()
 		{
-			if (_isWin10)
+			if (!_isWin10 && !Reg.Exist(Key1, Value1))
+			{
+				ChooseUpdateBox.SelectedIndex = 0;
+			}
+			else
 			{
 				var type = Convert.ToInt32(Reg.Read(Key1, Value1));
 				if (type <= 4 && type >= 1)
 				{
 					ChooseUpdateBox.SelectedIndex = type - 1;
 				}
+				/*else
+				{
+					ChooseUpdateBox.IsEnabled = false;
+				}*/
 			}
 		}
 
@@ -82,6 +90,8 @@ namespace FWin10
 				key = Key2;
 				value1 = Value1;
 				value2 = Value3;
+				Reg.Set(key, value1, ChooseUpdateBox.SelectedIndex + 1, RegistryValueKind.DWord);
+				Reg.Set(key, value2, ChooseUpdateBox.SelectedIndex + 1, RegistryValueKind.DWord);
 			}
 		}
 	}

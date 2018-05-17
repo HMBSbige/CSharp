@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Win32;
 
 namespace Common
@@ -151,6 +152,21 @@ namespace Common
 
 			root.CreateSubKey(path,false);
 			root.Close();
+		}
+
+		public static bool Exist(string path, string name)
+		{
+			if (!CheckPath(ref path, out var root))
+			{
+				throw new ArgumentException(@"注册表路径格式错误！", nameof(path));
+			}
+
+			var fullpath = root.OpenSubKey(path, false);
+			if (fullpath == null)
+			{
+				return false;
+			}
+			return fullpath.GetValueNames().Contains(name);
 		}
 	}
 }
