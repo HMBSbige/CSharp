@@ -11,5 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Benchmark.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reg.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsVersion.cs" />
   </ItemGroup>
 </Project>
