@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ChangeRemoteDesktopPort
+namespace WoL_csharp
 {
 	static class Program
 	{
@@ -13,7 +13,7 @@ namespace ChangeRemoteDesktopPort
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new ChangeRemoteDesktopPort());
+			Application.Run(new MainForm());
 		}
 	}
 }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminButtonDemo", "AdminBut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeRemoteDesktopPort", "ChangeRemoteDesktopPort\ChangeRemoteDesktopPort.csproj", "{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoL-csharp", "WoL-csharp\WoL-csharp.csproj", "{8C620519-6695-469C-92F2-D9A1FD466F0E}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Common\Common.projitems*{0bd2f3d6-6efb-4bb5-8594-096c121a0f05}*SharedItemsImports = 4
@@ -34,6 +36,10 @@ Global
 		{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C620519-6695-469C-92F2-D9A1FD466F0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C620519-6695-469C-92F2-D9A1FD466F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C620519-6695-469C-92F2-D9A1FD466F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C620519-6695-469C-92F2-D9A1FD466F0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
