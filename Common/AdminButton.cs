@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Security.Principal;
 
-namespace AdminButtonDemo
+namespace Common
 {
 	public static class AdminButton
 	{

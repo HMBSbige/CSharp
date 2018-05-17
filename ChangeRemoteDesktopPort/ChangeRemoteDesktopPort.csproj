@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}</ProjectGuid>
+    <ProjectGuid>{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>AdminButtonDemo</RootNamespace>
-    <AssemblyName>AdminButtonDemo</AssemblyName>
+    <RootNamespace>ChangeRemoteDesktopPort</RootNamespace>
+    <AssemblyName>ChangeRemoteDesktopPort</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\all.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,16 +54,16 @@
     <Compile Include="..\Common\AdminButton.cs">
       <Link>AdminButton.cs</Link>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="ChangeRemoteDesktopPort.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="ChangeRemoteDesktopPort.Designer.cs">
+      <DependentUpon>ChangeRemoteDesktopPort.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="ChangeRemoteDesktopPort.resx">
+      <DependentUpon>ChangeRemoteDesktopPort.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -85,5 +88,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\all.ico" />
+  </ItemGroup>
+  <Import Project="..\Common\Common.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
