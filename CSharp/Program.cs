@@ -9,7 +9,7 @@ namespace CSharp
 	{
 		private static void Main(string[] args)
 		{
-			var version = Reg.Exist(@"HKEY_LOCAL_MACHINE\SAM1");
+			var version = Convert.ToInt32(null);
 			Console.WriteLine(version);
 			Console.WriteLine(@"END OF FILE");
 		}

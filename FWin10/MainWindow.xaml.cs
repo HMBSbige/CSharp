@@ -16,21 +16,35 @@ namespace FWin10
 			InitializeComponent();
 		}
 
-		private const string Key1 = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU";
-		private const string Key2 = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update";
-		private const string Value1 = @"AUOptions";
-		private const string Value2 = @"NoAutoUpdate";
-		private const string Value3 = @"CachedAUOptions";
+		#region RegeditData
+		private const string Win10UpdateKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU";
+		private const string OldWinUpdateKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update";
+		private const string DisableOneDriveKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive";
+		private const string DisableCortanaKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search";
+		private const string DisableWindowsDefenderKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender";
+
+		private const string WinUpdateValue = @"AUOptions";
+		private const string Win10AutoUpdateValue = @"NoAutoUpdate";
+		private const string OldWinUpdateValue = @"CachedAUOptions";
+		private const string AutoInstallUpdatesValue = @"AutoInstallMinorUpdates";
+		private const string NoAutoRebootValue = @"NoAutoRebootWithLoggedOnUsers";
+		private const string DisableOneDriveValue = @"DisableFileSyncNGSC";
+		private const string AllowCortanaValue = @"AllowCortana";
+		private const string DisableWindowsDefenderValue = @"DisableAntiSpyware";
+		#endregion
+
 		private bool _isWin10;
 		private void Reflesh()
 		{
-			if (!_isWin10 && !Reg.Exist(Key1, Value1))
+			WindowsVersionLabel.Content = string.Format(@"版本：{0}", WindowsVersion.GetOSCompleteVersion());
+			//Windows Update
+			if (!_isWin10 && !Reg.Exist(Win10UpdateKey, WinUpdateValue))
 			{
 				ChooseUpdateBox.SelectedIndex = 0;
 			}
 			else
 			{
-				var type = Convert.ToInt32(Reg.Read(Key1, Value1));
+				var type = Convert.ToInt32(Reg.Read(Win10UpdateKey, WinUpdateValue));//如果键值不存在 type==0
 				if (type <= 4 && type >= 1)
 				{
 					ChooseUpdateBox.SelectedIndex = type - 1;
@@ -40,6 +54,16 @@ namespace FWin10
 					ChooseUpdateBox.IsEnabled = false;
 				}*/
 			}
+			//Auto Install Updates
+			AutoInstallUpdates_CheckBox.IsChecked = Convert.ToInt32(Reg.Read(Win10UpdateKey, AutoInstallUpdatesValue)) == 1;
+			//No Auto Reboot
+			NoAutoReboot_CheckBox.IsChecked = Convert.ToInt32(Reg.Read(Win10UpdateKey, NoAutoRebootValue)) == 1;
+			//Disable OneDrive
+			DisableOneDrive_CheckBox.IsChecked = Convert.ToInt32(Reg.Read(DisableOneDriveKey, DisableOneDriveValue)) == 1;
+			//Allow Cortana
+			DisableCortana_CheckBox.IsChecked = Reg.Exist(DisableCortanaKey, AllowCortanaValue) && Convert.ToInt32(Reg.Read(DisableCortanaKey, AllowCortanaValue)) == 0;
+			//Disable Windows Defender
+			DisableWindowsDefender_CheckBox.IsChecked = Convert.ToInt32(Reg.Read(DisableWindowsDefenderKey, DisableWindowsDefenderValue)) == 1;
 		}
 
 		private void RefleshButton_Click(object sender, RoutedEventArgs e)
@@ -56,14 +80,16 @@ namespace FWin10
 			Reflesh();
 		}
 
+		#region StatusChange
+
 		private void ChooseUpdateBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			string key, value1, value2;
 			if (_isWin10)
 			{
-				key = Key1;
-				value1 = Value1;
-				value2 = Value2;
+				key = Win10UpdateKey;
+				value1 = WinUpdateValue;
+				value2 = Win10AutoUpdateValue;
 				if (ChooseUpdateBox.SelectedIndex == 0)
 				{
 					Reg.Set(key, value1, 1, RegistryValueKind.DWord);
@@ -87,12 +113,74 @@ namespace FWin10
 			}
 			else
 			{
-				key = Key2;
-				value1 = Value1;
-				value2 = Value3;
+				key = OldWinUpdateKey;
+				value1 = WinUpdateValue;
+				value2 = OldWinUpdateValue;
 				Reg.Set(key, value1, ChooseUpdateBox.SelectedIndex + 1, RegistryValueKind.DWord);
 				Reg.Set(key, value2, ChooseUpdateBox.SelectedIndex + 1, RegistryValueKind.DWord);
 			}
 		}
+
+		private void AutoInstallUpdates_CheckBox_Click(object sender, RoutedEventArgs e)
+		{
+			if (AutoInstallUpdates_CheckBox.IsChecked == true)
+			{
+				Reg.Set(Win10UpdateKey, AutoInstallUpdatesValue, 1, RegistryValueKind.DWord);
+			}
+			else
+			{
+				Reg.Set(Win10UpdateKey, AutoInstallUpdatesValue, 0, RegistryValueKind.DWord);
+			}
+		}
+
+		private void NoAutoReboot_CheckBox_Click(object sender, RoutedEventArgs e)
+		{
+			if (NoAutoReboot_CheckBox.IsChecked == true)
+			{
+				Reg.Set(Win10UpdateKey, NoAutoRebootValue, 1, RegistryValueKind.DWord);
+			}
+			else
+			{
+				Reg.Set(Win10UpdateKey, NoAutoRebootValue, 0, RegistryValueKind.DWord);
+			}
+		}
+
+		private void DisableOneDrive_CheckBox_Click(object sender, RoutedEventArgs e)
+		{
+			if (DisableOneDrive_CheckBox.IsChecked == true)
+			{
+				Reg.Set(DisableOneDriveKey, DisableOneDriveValue, 1, RegistryValueKind.DWord);
+			}
+			else
+			{
+				Reg.Set(DisableOneDriveKey, DisableOneDriveValue, 0, RegistryValueKind.DWord);
+			}
+		}
+
+		private void DisableCortana_CheckBox_Click(object sender, RoutedEventArgs e)
+		{
+			if (DisableCortana_CheckBox.IsChecked == true)
+			{
+				Reg.Set(DisableCortanaKey, AllowCortanaValue, 0, RegistryValueKind.DWord);
+			}
+			else
+			{
+				Reg.Delete(DisableCortanaKey, AllowCortanaValue);
+			}
+		}
+
+		private void DisableWindowsDefender_CheckBox_Click(object sender, RoutedEventArgs e)
+		{
+			if (DisableWindowsDefender_CheckBox.IsChecked == true)
+			{
+				Reg.Set(DisableWindowsDefenderKey, DisableWindowsDefenderValue, 1, RegistryValueKind.DWord);
+			}
+			else
+			{
+				Reg.Delete(DisableWindowsDefenderKey, DisableWindowsDefenderValue);
+			}
+		}
+
+		#endregion
 	}
 }

@@ -5,16 +5,22 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:FWin10"
 		mc:Ignorable="d"
-		Title="FWin10" Height="450" Width="800" Initialized="Window_Initialized">
+		Title="FWin10" Height="215" Width="275" Initialized="Window_Initialized">
 	<Grid>
-		<Button x:Name="RefleshButton" Content="Refresh" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="77" Click="RefleshButton_Click"/>
+		<Button x:Name="RefleshButton" Content="刷新" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="77" Click="RefleshButton_Click"/>
 		<ComboBox x:Name="ChooseUpdateBox" HorizontalAlignment="Left" Margin="124,43,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.093,0.759" SelectionChanged="ChooseUpdateBox_SelectionChanged">
 			<ComboBoxItem Content="从不检查"/>
 			<ComboBoxItem Content="仅检查更新"/>
 			<ComboBoxItem Content="检查并下载更新"/>
 			<ComboBoxItem Content="自动安装更新"/>
 		</ComboBox>
-		<Label Content="Windows Update" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.456,-0.053"/>
+		<Label Content="Windows 更新" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.456,-0.053"/>
+		<Label x:Name="WindowsVersionLabel" Content="WindowsVersion" HorizontalAlignment="Left" Margin="92,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.819,1.458"/>
+		<CheckBox x:Name="AutoInstallUpdates_CheckBox" Content="自动安装无需重启的更新" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Click="AutoInstallUpdates_CheckBox_Click"/>
+		<CheckBox x:Name="NoAutoReboot_CheckBox" Content="如果有用户登录不自动重启计算机" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Click="NoAutoReboot_CheckBox_Click"/>
+		<CheckBox x:Name="DisableOneDrive_CheckBox" Content="禁用 OneDrive" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" Click="DisableOneDrive_CheckBox_Click"/>
+		<CheckBox x:Name="DisableCortana_CheckBox" Content="禁用小娜" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Click="DisableCortana_CheckBox_Click"/>
+		<CheckBox x:Name="DisableWindowsDefender_CheckBox" Content="禁用 Windows Defender" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Click="DisableWindowsDefender_CheckBox_Click"/>
 
 	</Grid>
 </Window>

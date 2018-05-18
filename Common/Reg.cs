@@ -107,6 +107,11 @@ namespace Common
 		/// <param name="name">键名称</param>
 		public static void Delete(string path, string name)
 		{
+			if (!Exist(path, name))
+			{
+				return;
+			}
+
 			if (!CheckPath(ref path, out var root))
 			{
 				throw new ArgumentException(@"注册表路径格式错误！", nameof(path));
