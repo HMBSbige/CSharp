@@ -49,7 +49,7 @@ namespace FWin10
 
 		private void Window_Initialized(object sender, EventArgs e)
 		{
-			if (Convert.ToDouble(WindowsVersion.GetOSSimpleVersion()) >= 6.4)
+			if (WindowsVersion.GetOSCompleteVersion() >= Version.Parse(@"6.4"))
 			{
 				_isWin10 = true;
 			}

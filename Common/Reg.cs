@@ -62,7 +62,7 @@ namespace Common
 		/// </summary>
 		/// <param name="path">路径</param>
 		/// <param name="name">键名称</param>
-		/// <returns></returns>
+		/// <returns>该键的值</returns>
 		public static object Read(string path, string name)
 		{
 			if (!CheckPath(ref path, out var root))
@@ -134,7 +134,7 @@ namespace Common
 				throw new ArgumentException(@"注册表路径格式错误！", nameof(path));
 			}
 
-			root.DeleteSubKey(path,false);
+			root.DeleteSubKey(path, false);
 			root.Close();
 		}
 
@@ -150,10 +150,16 @@ namespace Common
 				throw new ArgumentException(@"注册表路径格式错误！", nameof(path));
 			}
 
-			root.CreateSubKey(path,false);
+			root.CreateSubKey(path, false);
 			root.Close();
 		}
 
+		/// <summary>
+		/// 某键是否存在
+		/// </summary>
+		/// <param name="path">路径</param>
+		/// <param name="name">键名称</param>
+		/// <returns>存在返回是，否则返回否</returns>
 		public static bool Exist(string path, string name)
 		{
 			if (!CheckPath(ref path, out var root))
@@ -167,6 +173,22 @@ namespace Common
 				return false;
 			}
 			return fullpath.GetValueNames().Contains(name);
+		}
+
+		/// <summary>
+		/// 某子项是否存在
+		/// </summary>
+		/// <param name="path">路径</param>
+		/// <returns>存在返回是，否则返回否</returns>
+		public static bool Exist(string path)
+		{
+			if (!CheckPath(ref path, out var root))
+			{
+				throw new ArgumentException(@"注册表路径格式错误！", nameof(path));
+			}
+
+			var fullpath = root.OpenSubKey(path, false);
+			return fullpath != null;
 		}
 	}
 }

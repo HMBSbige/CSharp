@@ -9,8 +9,8 @@ namespace CSharp
 	{
 		private static void Main(string[] args)
 		{
-			var version2 = Reg.Exist(@"计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", @"AUOptions");
-			Console.WriteLine(version2);
+			var version = Reg.Exist(@"HKEY_LOCAL_MACHINE\SAM1");
+			Console.WriteLine(version);
 			Console.WriteLine(@"END OF FILE");
 		}
 	}

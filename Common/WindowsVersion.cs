@@ -129,5 +129,14 @@ namespace Common
 			var version = Environment.OSVersion.Version;
 			return $@"{version.Major}.{version.Minor}";
 		}
+
+		/// <summary>
+		/// 返回当前运行OS的版本号
+		/// </summary>
+		/// <returns></returns>
+		public static Version GetOSCompleteVersion()
+		{
+			return Environment.OSVersion.Version;
+		}
 	}
 }
