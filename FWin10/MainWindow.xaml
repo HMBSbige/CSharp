@@ -5,7 +5,7 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:FWin10"
 		mc:Ignorable="d"
-		Title="FWin10" Height="215" Width="275" Initialized="Window_Initialized">
+		Title="FWin10" Height="231" Width="275" Initialized="Window_Initialized">
 	<Grid>
 		<Button x:Name="RefleshButton" Content="刷新" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="77" Click="RefleshButton_Click"/>
 		<ComboBox x:Name="ChooseUpdateBox" HorizontalAlignment="Left" Margin="124,43,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.093,0.759" SelectionChanged="ChooseUpdateBox_SelectionChanged">
@@ -21,6 +21,7 @@
 		<CheckBox x:Name="DisableOneDrive_CheckBox" Content="禁用 OneDrive" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" Click="DisableOneDrive_CheckBox_Click"/>
 		<CheckBox x:Name="DisableCortana_CheckBox" Content="禁用小娜" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Click="DisableCortana_CheckBox_Click"/>
 		<CheckBox x:Name="DisableWindowsDefender_CheckBox" Content="禁用 Windows Defender" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Click="DisableWindowsDefender_CheckBox_Click"/>
+		<CheckBox x:Name="DisableCustomFolder_CheckBox" Content="去除右键菜单&quot;自定义文件夹&quot;" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.382,0.267" Click="DisableCustomFolder_CheckBox_Click"/>
 
 	</Grid>
 </Window>

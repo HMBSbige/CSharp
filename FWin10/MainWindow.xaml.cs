@@ -22,6 +22,7 @@ namespace FWin10
 		private const string DisableOneDriveKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive";
 		private const string DisableCortanaKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search";
 		private const string DisableWindowsDefenderKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender";
+		private const string DisableCustomFolderKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer";
 
 		private const string WinUpdateValue = @"AUOptions";
 		private const string Win10AutoUpdateValue = @"NoAutoUpdate";
@@ -31,6 +32,7 @@ namespace FWin10
 		private const string DisableOneDriveValue = @"DisableFileSyncNGSC";
 		private const string AllowCortanaValue = @"AllowCortana";
 		private const string DisableWindowsDefenderValue = @"DisableAntiSpyware";
+		private const string DisableCustomFolderValue = @"NoCustomizeWebView";
 		#endregion
 
 		private bool _isWin10;
@@ -64,6 +66,8 @@ namespace FWin10
 			DisableCortana_CheckBox.IsChecked = Reg.Exist(DisableCortanaKey, AllowCortanaValue) && Convert.ToInt32(Reg.Read(DisableCortanaKey, AllowCortanaValue)) == 0;
 			//Disable Windows Defender
 			DisableWindowsDefender_CheckBox.IsChecked = Convert.ToInt32(Reg.Read(DisableWindowsDefenderKey, DisableWindowsDefenderValue)) == 1;
+			//Disable Custom Folder
+			DisableCustomFolder_CheckBox.IsChecked = Convert.ToInt32(Reg.Read(DisableCustomFolderKey, DisableCustomFolderValue)) == 1;
 		}
 
 		private void RefleshButton_Click(object sender, RoutedEventArgs e)
@@ -178,6 +182,18 @@ namespace FWin10
 			else
 			{
 				Reg.Delete(DisableWindowsDefenderKey, DisableWindowsDefenderValue);
+			}
+		}
+
+		private void DisableCustomFolder_CheckBox_Click(object sender, RoutedEventArgs e)
+		{
+			if (DisableCustomFolder_CheckBox.IsChecked == true)
+			{
+				Reg.Set(DisableCustomFolderKey, DisableCustomFolderValue, 1, RegistryValueKind.DWord);
+			}
+			else
+			{
+				Reg.Delete(DisableCustomFolderKey, DisableCustomFolderValue);
 			}
 		}
 
