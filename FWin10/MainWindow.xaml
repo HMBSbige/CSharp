@@ -26,6 +26,7 @@
 		<CheckBox x:Name="DisableWindowsDefender_CheckBox" Content="禁用 Windows Defender" HorizontalAlignment="Left" Margin="24,243,0,0" VerticalAlignment="Top" Click="DisableWindowsDefender_CheckBox_Click"/>
 		<CheckBox x:Name="DisableCustomFolder_CheckBox" Content="去除右键菜单&quot;自定义文件夹&quot;" HorizontalAlignment="Left" Margin="24,263,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.382,0.267" Click="DisableCustomFolder_CheckBox_Click"/>
 		<CheckBox x:Name="ExcludeWUDrivers_CheckBox" Content="不包括驱动程序" HorizontalAlignment="Left" Margin="24,126,0,0" VerticalAlignment="Top" Click="ExcludeWUDrivers_CheckBox_Click"/>
+		<CheckBox x:Name="ExcludeMRT_CheckBox" Content="不包括恶意软件删除工具" HorizontalAlignment="Left" Margin="24,146,0,0" VerticalAlignment="Top" Click="ExcludeMRT_CheckBox_Click"/>
 
 	</Grid>
 </Window>

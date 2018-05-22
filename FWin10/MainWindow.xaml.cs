@@ -24,6 +24,7 @@ namespace FWin10
 		private const string DisableWindowsDefenderKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender";
 		private const string DisableCustomFolderKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer";
 		private const string ExcludeWUDriversKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate";
+		private const string ExcludeMRTKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MRT";
 
 		private const string WinUpdateValue = @"AUOptions";
 		private const string Win10AutoUpdateValue = @"NoAutoUpdate";
@@ -35,6 +36,7 @@ namespace FWin10
 		private const string DisableWindowsDefenderValue = @"DisableAntiSpyware";
 		private const string DisableCustomFolderValue = @"NoCustomizeWebView";
 		private const string ExcludeWUDriversValue = @"ExcludeWUDriversInQualityUpdate";
+		private const string ExcludeMRTValue = @"DontOfferThroughWUAU";
 		#endregion
 
 		private bool _isWin10;
@@ -81,6 +83,8 @@ namespace FWin10
 				ExcludeWUDrivers_CheckBox.IsEnabled = false;
 				ExcludeWUDrivers_CheckBox.IsChecked = false;
 			}
+			//Exclude MRT
+			ExcludeMRT_CheckBox.IsChecked = Convert.ToInt32(Reg.Read(ExcludeMRTKey, ExcludeMRTValue)) == 1;
 		}
 
 		private void RefleshButton_Click(object sender, RoutedEventArgs e)
@@ -219,6 +223,18 @@ namespace FWin10
 			else
 			{
 				Reg.Delete(ExcludeWUDriversKey, ExcludeWUDriversValue);
+			}
+		}
+
+		private void ExcludeMRT_CheckBox_Click(object sender, RoutedEventArgs e)
+		{
+			if (ExcludeMRT_CheckBox.IsChecked == true)
+			{
+				Reg.Set(ExcludeMRTKey, ExcludeMRTValue, 1, RegistryValueKind.DWord);
+			}
+			else
+			{
+				Reg.Delete(ExcludeMRTKey, ExcludeMRTValue);
 			}
 		}
 
