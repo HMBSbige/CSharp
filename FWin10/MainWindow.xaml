@@ -5,23 +5,27 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:FWin10"
 		mc:Ignorable="d"
-		Title="FWin10" Height="231" Width="275" Initialized="Window_Initialized">
+		Title="FWin10" Height="355" Width="268" Initialized="Window_Initialized">
 	<Grid>
+		<GroupBox Header="其他" HorizontalAlignment="Left" Height="131" Margin="10,182,0,0" VerticalAlignment="Top" Width="240"/>
+
+		<GroupBox Header="Windows 更新" HorizontalAlignment="Left" Height="140" Margin="10,37,0,0" VerticalAlignment="Top" Width="240"/>
+
 		<Button x:Name="RefleshButton" Content="刷新" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="77" Click="RefleshButton_Click"/>
-		<ComboBox x:Name="ChooseUpdateBox" HorizontalAlignment="Left" Margin="124,43,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.093,0.759" SelectionChanged="ChooseUpdateBox_SelectionChanged">
+		<ComboBox x:Name="ChooseUpdateBox" HorizontalAlignment="Left" Margin="24,60,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.093,0.759" SelectionChanged="ChooseUpdateBox_SelectionChanged">
 			<ComboBoxItem Content="从不检查"/>
 			<ComboBoxItem Content="仅检查更新"/>
 			<ComboBoxItem Content="检查并下载更新"/>
 			<ComboBoxItem Content="自动安装更新"/>
 		</ComboBox>
-		<Label Content="Windows 更新" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.456,-0.053"/>
 		<Label x:Name="WindowsVersionLabel" Content="WindowsVersion" HorizontalAlignment="Left" Margin="92,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.819,1.458"/>
-		<CheckBox x:Name="AutoInstallUpdates_CheckBox" Content="自动安装无需重启的更新" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Click="AutoInstallUpdates_CheckBox_Click"/>
-		<CheckBox x:Name="NoAutoReboot_CheckBox" Content="如果有用户登录不自动重启计算机" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Click="NoAutoReboot_CheckBox_Click"/>
-		<CheckBox x:Name="DisableOneDrive_CheckBox" Content="禁用 OneDrive" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" Click="DisableOneDrive_CheckBox_Click"/>
-		<CheckBox x:Name="DisableCortana_CheckBox" Content="禁用小娜" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Click="DisableCortana_CheckBox_Click"/>
-		<CheckBox x:Name="DisableWindowsDefender_CheckBox" Content="禁用 Windows Defender" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Click="DisableWindowsDefender_CheckBox_Click"/>
-		<CheckBox x:Name="DisableCustomFolder_CheckBox" Content="去除右键菜单&quot;自定义文件夹&quot;" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.382,0.267" Click="DisableCustomFolder_CheckBox_Click"/>
+		<CheckBox x:Name="AutoInstallUpdates_CheckBox" Content="自动安装无需重启的更新" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top" Click="AutoInstallUpdates_CheckBox_Click"/>
+		<CheckBox x:Name="NoAutoReboot_CheckBox" Content="如果有用户登录不自动重启计算机" HorizontalAlignment="Left" Margin="24,106,0,0" VerticalAlignment="Top" Click="NoAutoReboot_CheckBox_Click"/>
+		<CheckBox x:Name="DisableOneDrive_CheckBox" Content="禁用 OneDrive" HorizontalAlignment="Left" Margin="24,203,0,0" VerticalAlignment="Top" Click="DisableOneDrive_CheckBox_Click"/>
+		<CheckBox x:Name="DisableCortana_CheckBox" Content="禁用小娜" HorizontalAlignment="Left" Margin="24,223,0,0" VerticalAlignment="Top" Click="DisableCortana_CheckBox_Click"/>
+		<CheckBox x:Name="DisableWindowsDefender_CheckBox" Content="禁用 Windows Defender" HorizontalAlignment="Left" Margin="24,243,0,0" VerticalAlignment="Top" Click="DisableWindowsDefender_CheckBox_Click"/>
+		<CheckBox x:Name="DisableCustomFolder_CheckBox" Content="去除右键菜单&quot;自定义文件夹&quot;" HorizontalAlignment="Left" Margin="24,263,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.382,0.267" Click="DisableCustomFolder_CheckBox_Click"/>
+		<CheckBox x:Name="ExcludeWUDrivers_CheckBox" Content="不包括驱动程序" HorizontalAlignment="Left" Margin="24,126,0,0" VerticalAlignment="Top" Click="ExcludeWUDrivers_CheckBox_Click"/>
 
 	</Grid>
 </Window>

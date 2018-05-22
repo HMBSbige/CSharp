@@ -23,6 +23,7 @@ namespace FWin10
 		private const string DisableCortanaKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search";
 		private const string DisableWindowsDefenderKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender";
 		private const string DisableCustomFolderKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer";
+		private const string ExcludeWUDriversKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate";
 
 		private const string WinUpdateValue = @"AUOptions";
 		private const string Win10AutoUpdateValue = @"NoAutoUpdate";
@@ -33,6 +34,7 @@ namespace FWin10
 		private const string AllowCortanaValue = @"AllowCortana";
 		private const string DisableWindowsDefenderValue = @"DisableAntiSpyware";
 		private const string DisableCustomFolderValue = @"NoCustomizeWebView";
+		private const string ExcludeWUDriversValue = @"ExcludeWUDriversInQualityUpdate";
 		#endregion
 
 		private bool _isWin10;
@@ -68,6 +70,17 @@ namespace FWin10
 			DisableWindowsDefender_CheckBox.IsChecked = Convert.ToInt32(Reg.Read(DisableWindowsDefenderKey, DisableWindowsDefenderValue)) == 1;
 			//Disable Custom Folder
 			DisableCustomFolder_CheckBox.IsChecked = Convert.ToInt32(Reg.Read(DisableCustomFolderKey, DisableCustomFolderValue)) == 1;
+			//Exclude Drivers
+			if (WindowsVersion.GetOSCompleteVersion() >= Version.Parse(@"10.0.14328.1000"))
+			{
+				ExcludeWUDrivers_CheckBox.IsEnabled = true;
+				ExcludeWUDrivers_CheckBox.IsChecked = Convert.ToInt32(Reg.Read(ExcludeWUDriversKey, ExcludeWUDriversValue)) == 1;
+			}
+			else
+			{
+				ExcludeWUDrivers_CheckBox.IsEnabled = false;
+				ExcludeWUDrivers_CheckBox.IsChecked = false;
+			}
 		}
 
 		private void RefleshButton_Click(object sender, RoutedEventArgs e)
@@ -194,6 +207,18 @@ namespace FWin10
 			else
 			{
 				Reg.Delete(DisableCustomFolderKey, DisableCustomFolderValue);
+			}
+		}
+
+		private void ExcludeWUDrivers_CheckBox_Click(object sender, RoutedEventArgs e)
+		{
+			if (ExcludeWUDrivers_CheckBox.IsChecked == true)
+			{
+				Reg.Set(ExcludeWUDriversKey, ExcludeWUDriversValue, 1, RegistryValueKind.DWord);
+			}
+			else
+			{
+				Reg.Delete(ExcludeWUDriversKey, ExcludeWUDriversValue);
 			}
 		}
 
