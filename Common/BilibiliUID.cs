@@ -7,11 +7,12 @@ namespace Common
 {
 	public static class BilibiliUID
 	{
-		#region TobilibiliUID
-
+		#region Data
 		private static readonly uint[] RTable;
-		public const ulong Maxuid = (ulong)1e8;
+		private const long Maxuid = (long)1e10;
+		#endregion
 
+		#region Constructors
 		static BilibiliUID()
 		{
 			RTable = new uint[256];
@@ -21,6 +22,9 @@ namespace Common
 				RTable[CRC32.MChecksumTable[i] >> 24] = i;
 			}
 		}
+		#endregion
+
+		#region private
 
 		private static uint CRC32LastIndex(string str)
 		{
@@ -40,7 +44,7 @@ namespace Common
 			return RTable[t];
 		}
 
-		private static string DeepCheck(string i, IReadOnlyList<uint> index)
+		private static uint? DeepCheck(string i, IReadOnlyList<uint> index)
 		{
 			var hash = ~CRC32.Get(i);
 			var tc = hash & 0xff ^ index[2];
@@ -48,7 +52,7 @@ namespace Common
 			{
 				return null;
 			}
-			var a1 = tc - 48;
+			var ans = tc - 48;
 
 			hash = CRC32.MChecksumTable[index[2]] ^ (hash >> 8);
 			tc = hash & 0xff ^ index[1];
@@ -56,7 +60,7 @@ namespace Common
 			{
 				return null;
 			}
-			var a2 = tc - 48;
+			ans = ans * 10 + tc - 48;
 
 			hash = CRC32.MChecksumTable[index[1]] ^ (hash >> 8);
 			tc = hash & 0xff ^ index[0];
@@ -64,47 +68,39 @@ namespace Common
 			{
 				return null;
 			}
-			var a3 = tc - 48;
-
-			return $@"{a1}{a2}{a3}";
+			ans = ans * 10 + tc - 48;
+			return ans;
 		}
 
-		private static bool Isthatuid(string str, ulong i)
+		private static bool Isthatuid(string str, long i)
 		{
 			return Convert.ToUInt32(str, 16) == CRC32.Get(i.ToString(@"D"));
 		}
 
-		public static ConcurrentBag<ulong> BruteforceParallel(string str, long min = 0, long max = (long)Maxuid)
+		private static long[] BruteforceParallel(string crc32, long min = 0, long max = Maxuid)
 		{
-			var res = new ConcurrentBag<ulong>();
+			var res = new ConcurrentBag<long>();
 			Parallel.For(min, max, (x, loopState) =>
 			{
-				if (Isthatuid(str, (ulong)x))
+				if (Isthatuid(crc32, x))
 				{
-					res.Add((ulong)x);
+					res.Add(x);
 				}
 			});
-			return res;
+			return res.ToArray();
 		}
 
-		private static ulong? Bruteforce(string str, ulong min, ulong max)
+		private static long? Finduidlow(string str)
 		{
-			for (var i = min; i <= max; ++i)
+			var ans = BruteforceParallel(str, 0, 1000);
+			if (ans.Length == 0)
 			{
-				if (Isthatuid(str, i))
-				{
-					return i;
-				}
+				return null;
 			}
-			return null;
+			return ans[0];
 		}
 
-		private static ulong? Finduidlow(string str)
-		{
-			return Bruteforce(str, 0, 999);
-		}
-
-		private static ulong? Finduidhigh(string str, ulong max = Maxuid)
+		private static long? Finduidhigh(string str, long max = Maxuid)
 		{
 			var index = new uint[4];
 			var ht = Convert.ToUInt32(str, 16) ^ 0xffffffff;
@@ -115,7 +111,7 @@ namespace Common
 				var snum = CRC32.MChecksumTable[index[3 - i]];
 				ht ^= snum >> ((3 - i) * 8);
 			}
-			for (ulong j = 0; j < max / 1000; ++j)
+			for (long j = 0; j < max / 1000; ++j)
 			{
 				var lastindex = CRC32LastIndex(j.ToString());
 				if (lastindex == index[3])
@@ -123,39 +119,37 @@ namespace Common
 					var deepCheckData = DeepCheck(j.ToString(), index);
 					if (deepCheckData != null)
 					{
-						return Convert.ToUInt64(j + deepCheckData);
+						return j * 1000 + deepCheckData;
 					}
 				}
 			}
 			return null;
 		}
 
-		public static ulong? Getuid(string str)
+		#endregion
+
+		#region public
+
+		public static long? GetUID_First(string crc32)
 		{
-			return Finduidlow(str) ?? Finduidhigh(str);
+			return Finduidlow(crc32) ?? Finduidhigh(crc32);
 		}
 
-		public static bool CheckAns(ulong i)
+		public static long[] GetUID_All(string crc32, ulong max = Maxuid)
 		{
-			var crc32 = CRC32.Get(i.ToString(@"D"));
-			var rcrc32 = Getuid(crc32.ToString(@"X"));
-			return rcrc32 == i;
-		}
-
-		public static bool CheckOne(ulong i)
-		{
-			var crc32 = CRC32.Get(i.ToString(@"D"));
-			var rcrc32 = Getuid(crc32.ToString(@"X"));
-			if (rcrc32 != null)
+			long[] res;
+			var firstuid = GetUID_First(crc32);
+			if (firstuid != null)
 			{
-				var r = CRC32.Get(rcrc32.Value.ToString(@"D"));
-				return r == crc32;
+				res = BruteforceParallel(crc32, Convert.ToInt64(firstuid.Value), (long)max);
 			}
 			else
 			{
-				return false;
+				throw new Exception(@"Cannot find the first number!");
 			}
+			return res;
 		}
+
 		#endregion
 	}
 }
