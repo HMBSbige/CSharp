@@ -130,18 +130,18 @@ namespace Common
 
 		#region public
 
-		public static long? GetUID_First(string crc32)
+		public static long? GetUID_First(string crc32, long max = Maxuid)
 		{
-			return Finduidlow(crc32) ?? Finduidhigh(crc32);
+			return Finduidlow(crc32) ?? Finduidhigh(crc32, max);
 		}
 
-		public static long[] GetUID_All(string crc32, ulong max = Maxuid)
+		public static long[] GetUID_All(string crc32, long max = Maxuid)
 		{
 			long[] res;
-			var firstuid = GetUID_First(crc32);
+			var firstuid = GetUID_First(crc32, max);
 			if (firstuid != null)
 			{
-				res = BruteforceParallel(crc32, Convert.ToInt64(firstuid.Value), (long)max);
+				res = BruteforceParallel(crc32, firstuid.Value, max);
 			}
 			else
 			{
