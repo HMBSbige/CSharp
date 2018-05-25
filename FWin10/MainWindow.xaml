@@ -5,28 +5,29 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:FWin10"
 		mc:Ignorable="d"
-		Title="FWin10" Height="355" Width="268" Initialized="Window_Initialized">
+		Title="FWin10" Height="370" Width="275" Initialized="Window_Initialized">
 	<Grid>
-		<GroupBox Header="其他" HorizontalAlignment="Left" Height="131" Margin="10,182,0,0" VerticalAlignment="Top" Width="240"/>
+		<GroupBox Header="其他" HorizontalAlignment="Left" Height="107" Margin="9,216,0,0" VerticalAlignment="Top" Width="240"/>
 
-		<GroupBox Header="Windows 更新" HorizontalAlignment="Left" Height="140" Margin="10,37,0,0" VerticalAlignment="Top" Width="240"/>
+		<GroupBox Header="Windows 更新" HorizontalAlignment="Left" Height="140" Margin="9,71,0,0" VerticalAlignment="Top" Width="240"/>
 
-		<Button x:Name="RefleshButton" Content="刷新" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="77" Click="RefleshButton_Click"/>
-		<ComboBox x:Name="ChooseUpdateBox" HorizontalAlignment="Left" Margin="24,60,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.093,0.759" SelectionChanged="ChooseUpdateBox_SelectionChanged">
+		<Button x:Name="RefleshButton" Content="刷新" Margin="10,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="77" Click="RefleshButton_Click"/>
+		<ComboBox x:Name="ChooseUpdateBox" HorizontalAlignment="Left" Margin="23,94,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.093,0.759" SelectionChanged="ChooseUpdateBox_SelectionChanged">
 			<ComboBoxItem Content="从不检查"/>
 			<ComboBoxItem Content="仅检查更新"/>
 			<ComboBoxItem Content="检查并下载更新"/>
 			<ComboBoxItem Content="自动安装更新"/>
 		</ComboBox>
-		<Label x:Name="WindowsVersionLabel" Content="WindowsVersion" HorizontalAlignment="Left" Margin="92,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.819,1.458"/>
-		<CheckBox x:Name="AutoInstallUpdates_CheckBox" Content="自动安装无需重启的更新" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top" Click="AutoInstallUpdates_CheckBox_Click"/>
-		<CheckBox x:Name="NoAutoReboot_CheckBox" Content="如果有用户登录不自动重启计算机" HorizontalAlignment="Left" Margin="24,106,0,0" VerticalAlignment="Top" Click="NoAutoReboot_CheckBox_Click"/>
-		<CheckBox x:Name="DisableOneDrive_CheckBox" Content="禁用 OneDrive" HorizontalAlignment="Left" Margin="24,203,0,0" VerticalAlignment="Top" Click="DisableOneDrive_CheckBox_Click"/>
-		<CheckBox x:Name="DisableCortana_CheckBox" Content="禁用小娜" HorizontalAlignment="Left" Margin="24,223,0,0" VerticalAlignment="Top" Click="DisableCortana_CheckBox_Click"/>
-		<CheckBox x:Name="DisableWindowsDefender_CheckBox" Content="禁用 Windows Defender" HorizontalAlignment="Left" Margin="24,243,0,0" VerticalAlignment="Top" Click="DisableWindowsDefender_CheckBox_Click"/>
-		<CheckBox x:Name="DisableCustomFolder_CheckBox" Content="去除右键菜单&quot;自定义文件夹&quot;" HorizontalAlignment="Left" Margin="24,263,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.382,0.267" Click="DisableCustomFolder_CheckBox_Click"/>
-		<CheckBox x:Name="ExcludeWUDrivers_CheckBox" Content="不包括驱动程序" HorizontalAlignment="Left" Margin="24,126,0,0" VerticalAlignment="Top" Click="ExcludeWUDrivers_CheckBox_Click"/>
-		<CheckBox x:Name="ExcludeMRT_CheckBox" Content="不包括恶意软件删除工具" HorizontalAlignment="Left" Margin="24,146,0,0" VerticalAlignment="Top" Click="ExcludeMRT_CheckBox_Click"/>
+		<Label x:Name="WindowsVersionLabel" Content="WindowsVersion" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.819,1.458"/>
+		<CheckBox x:Name="AutoInstallUpdates_CheckBox" Content="自动安装无需重启的更新" HorizontalAlignment="Left" Margin="23,120,0,0" VerticalAlignment="Top" Click="AutoInstallUpdates_CheckBox_Click"/>
+		<CheckBox x:Name="NoAutoReboot_CheckBox" Content="如果有用户登录不自动重启计算机" HorizontalAlignment="Left" Margin="23,140,0,0" VerticalAlignment="Top" Click="NoAutoReboot_CheckBox_Click"/>
+		<CheckBox x:Name="DisableOneDrive_CheckBox" Content="禁用 OneDrive" HorizontalAlignment="Left" Margin="23,237,0,0" VerticalAlignment="Top" Click="DisableOneDrive_CheckBox_Click"/>
+		<CheckBox x:Name="DisableCortana_CheckBox" Content="禁用小娜" HorizontalAlignment="Left" Margin="23,257,0,0" VerticalAlignment="Top" Click="DisableCortana_CheckBox_Click"/>
+		<CheckBox x:Name="DisableWindowsDefender_CheckBox" Content="禁用 Windows Defender" HorizontalAlignment="Left" Margin="23,277,0,0" VerticalAlignment="Top" Click="DisableWindowsDefender_CheckBox_Click"/>
+		<CheckBox x:Name="DisableCustomFolder_CheckBox" Content="去除右键菜单&quot;自定义文件夹&quot;" HorizontalAlignment="Left" Margin="23,297,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.382,0.267" Click="DisableCustomFolder_CheckBox_Click"/>
+		<CheckBox x:Name="ExcludeWUDrivers_CheckBox" Content="不包括驱动程序" HorizontalAlignment="Left" Margin="23,160,0,0" VerticalAlignment="Top" Click="ExcludeWUDrivers_CheckBox_Click"/>
+		<CheckBox x:Name="ExcludeMRT_CheckBox" Content="不包括恶意软件删除工具" HorizontalAlignment="Left" Margin="23,180,0,0" VerticalAlignment="Top" Click="ExcludeMRT_CheckBox_Click"/>
+		<Button x:Name="RestartExplorerButton" Content="重启资源管理器" Margin="92,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="105" Click="RestartExplorerButton_Click"/>
 
 	</Grid>
 </Window>

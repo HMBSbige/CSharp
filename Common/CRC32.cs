@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -50,6 +51,28 @@ namespace Common
 				// Initialize checksumRegister to 0xFFFFFFFF and calculate the checksum.
 				return ~byteStream.Aggregate(0xFFFFFFFF, (checksumRegister, currentByte) =>
 				MChecksumTable[(checksumRegister & 0xFF) ^ Convert.ToByte(currentByte)] ^ (checksumRegister >> 8));
+			}
+			catch (FormatException e)
+			{
+				throw new Exception(@"Could not read the stream out as bytes.", e);
+			}
+			catch (InvalidCastException e)
+			{
+				throw new Exception(@"Could not read the stream out as bytes.", e);
+			}
+			catch (OverflowException e)
+			{
+				throw new Exception(@"Could not read the stream out as bytes.", e);
+			}
+		}
+
+		public static uint Get<T>(IEnumerable<T> byteStream)
+		{
+			try
+			{
+				// Initialize checksumRegister to 0xFFFFFFFF and calculate the checksum.
+				return ~byteStream.Aggregate(0xFFFFFFFF, (checksumRegister, currentByte) =>
+						(MChecksumTable[(checksumRegister & 0xFF) ^ Convert.ToByte(currentByte)] ^ (checksumRegister >> 8)));
 			}
 			catch (FormatException e)
 			{

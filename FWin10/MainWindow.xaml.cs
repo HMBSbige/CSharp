@@ -92,6 +92,11 @@ namespace FWin10
 			Reflesh();
 		}
 
+		private void RestartExplorerButton_Click(object sender, RoutedEventArgs e)
+		{
+			WinProcess.Stop(@"explorer");
+		}
+
 		private void Window_Initialized(object sender, EventArgs e)
 		{
 			if (WindowsVersion.GetOSCompleteVersion() >= Version.Parse(@"6.4"))
