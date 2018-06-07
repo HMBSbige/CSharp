@@ -18,13 +18,9 @@ namespace CSharp
 	{
 		private static void Main(string[] args)
 		{
-			var ip = NetTest.GetIP(@"www.baidu.com");
-			for (var i = 0; i < 10; ++i)
-			{
-				var ans = NetTest.TCPing(ip,80);
-				Console.WriteLine(ans);
-				Thread.Sleep(1000);
-			}
+			var ip = IPAddress.Parse(@"1.0.0.0");
+			Console.WriteLine(IPv4Subnet.IPv42UintLE(ip));
+			Console.WriteLine(IPv4Subnet.IPv42UintBE(ip));
 			Console.WriteLine(Environment.NewLine + @"END OF FILE");
 			Console.Read();
 		}
