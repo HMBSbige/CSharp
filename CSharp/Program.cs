@@ -18,9 +18,9 @@ namespace CSharp
 	{
 		private static void Main(string[] args)
 		{
-			var ip = IPAddress.Parse(@"1.0.0.0");
-			Console.WriteLine(IPv4Subnet.IPv42UintLE(ip));
-			Console.WriteLine(IPv4Subnet.IPv42UintBE(ip));
+			var ip = NetTest.GetIP(@"www.bige0.com");
+			var res = NetTest.IsPortOpen(ip, 80, 1000, 3);
+			Console.WriteLine(res);
 			Console.WriteLine(Environment.NewLine + @"END OF FILE");
 			Console.Read();
 		}

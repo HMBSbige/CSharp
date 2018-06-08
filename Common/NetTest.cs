@@ -46,7 +46,7 @@ namespace Common
 			}
 		}
 
-		public static double? TCPing(IPAddress ip, int port = 22, int timeout = 1000)
+		public static double? TCPing(IPAddress ip, int port = 80, int timeout = 1000)
 		{
 			if (ip == null)
 			{
@@ -109,5 +109,19 @@ namespace Common
 			return res;
 		}
 
+		public static bool IsPortOpen(IPAddress ip, int port = 80, int timeout = 1000, uint n = 4)
+		{
+			var isOpen = false;
+			for (uint i = 0; i < n; ++i)
+			{
+				var result = TCPing(ip, port, timeout);
+				if (result != null)
+				{
+					Debug.WriteLine($@"Connected to {ip}:{port}:{result}ms");
+					isOpen = true;
+				}
+			}
+			return isOpen;
+		}
 	}
 }
