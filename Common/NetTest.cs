@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -109,19 +111,36 @@ namespace Common
 			return res;
 		}
 
-		public static bool IsPortOpen(IPAddress ip, int port = 80, int timeout = 1000, uint n = 4)
+		public static double? IsPortOpen(IPAddress ip, int port = 80, int timeout = 1000, uint warmup = 1, uint n = 4)
 		{
-			var isOpen = false;
+			var times = new List<double>();
+			for (uint i = 0; i < warmup; ++i)
+			{
+				var result = TCPing(ip, port, timeout);
+				if (result != null)
+				{
+					Debug.WriteLine($@"[Warmup]Connected to {ip}:{port}:{result}ms");
+				}
+			}
 			for (uint i = 0; i < n; ++i)
 			{
 				var result = TCPing(ip, port, timeout);
 				if (result != null)
 				{
 					Debug.WriteLine($@"Connected to {ip}:{port}:{result}ms");
-					isOpen = true;
+					times.Add(result.Value);
 				}
 			}
-			return isOpen;
+
+			if (times.Count == 0)
+			{
+				return null;
+			}
+			else
+			{
+				Debug.WriteLine($@"Average :{times.Average()}ms");
+				return times.Average();
+			}
 		}
 	}
 }

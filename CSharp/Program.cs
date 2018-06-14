@@ -18,9 +18,16 @@ namespace CSharp
 	{
 		private static void Main(string[] args)
 		{
-			var ip = NetTest.GetIP(@"www.bige0.com");
-			var res = NetTest.IsPortOpen(ip, 80, 1000, 3);
-			Console.WriteLine(res);
+			var ip = NetTest.GetIP(@"www.baidu.com");
+			var res= NetTest.IsPortOpen(ip, 443);
+			if (res == null)
+			{
+				Console.WriteLine(@"Closed");
+			}
+			else
+			{
+				Console.WriteLine(res);
+			}
 			Console.WriteLine(Environment.NewLine + @"END OF FILE");
 			Console.Read();
 		}
