@@ -16,18 +16,22 @@ namespace CSharp
 {
 	internal static class Program
 	{
-		private static void Main(string[] args)
+		public static void Test(string hostname, int port)
 		{
-			var ip = NetTest.GetIP(@"www.baidu.com");
-			var res= NetTest.IsPortOpen(ip, 443);
+			var ip = NetTest.GetIP(hostname);
+			var res = NetTest.IsPortOpen(ip, port);
 			if (res == null)
 			{
-				Console.WriteLine(@"Closed");
+				Console.WriteLine($@"{hostname}:{port}:Closed");
 			}
 			else
 			{
-				Console.WriteLine(res);
+				Console.WriteLine($@"{hostname}:{port}:{res}ms");
 			}
+		}
+		private static void Main(string[] args)
+		{
+
 			Console.WriteLine(Environment.NewLine + @"END OF FILE");
 			Console.Read();
 		}

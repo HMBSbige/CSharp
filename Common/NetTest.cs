@@ -67,7 +67,7 @@ namespace Common
 					return null;
 				}
 				Debug.WriteLine("{0:0.00}ms", t);
-				return Math.Round(t, 2);
+				return t;
 			}
 		}
 
@@ -139,7 +139,7 @@ namespace Common
 			else
 			{
 				Debug.WriteLine($@"Average :{times.Average()}ms");
-				return times.Average();
+				return Math.Round(times.Average(),2);
 			}
 		}
 	}
