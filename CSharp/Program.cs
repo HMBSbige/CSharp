@@ -16,10 +16,10 @@ namespace CSharp
 {
 	internal static class Program
 	{
-		public static void Test(string hostname, int port)
+		public static async void Test(string hostname, int port)
 		{
-			var ip = NetTest.GetIP(hostname);
-			var res = NetTest.IsPortOpen(ip, port);
+			var ip = await NetTest.GetIP(hostname);
+			var res = await NetTest.IsPortOpen(ip, port);
 			if (res == null)
 			{
 				Console.WriteLine($@"{hostname}:{port}:Closed");
@@ -29,8 +29,17 @@ namespace CSharp
 				Console.WriteLine($@"{hostname}:{port}:{res}ms");
 			}
 		}
+
+		private static async void OutputPublicIP()
+		{
+			var ip = await NetTest.GetPublicIpAddress();
+			Console.WriteLine($@"Public IP address is: {ip}");
+		}
 		private static void Main(string[] args)
 		{
+			OutputPublicIP();
+			Test(@"asf.bige0.vip", 443);
+			Test(@"www.baidu.com", 443);
 
 			Console.WriteLine(Environment.NewLine + @"END OF FILE");
 			Console.Read();

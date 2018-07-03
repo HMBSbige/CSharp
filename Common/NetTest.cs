@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Common
 {
-	internal class NetTest
+	internal static class NetTest
 	{
 		public class PingStatus
 		{
@@ -28,11 +30,11 @@ namespace Common
 			public int bytes;
 		}
 
-		public static IPAddress GetIP(string host)
+		public static async Task<IPAddress> GetIP(string host)
 		{
 			try
 			{
-				var ips = Dns.GetHostAddresses(host);
+				var ips = await Dns.GetHostAddressesAsync(host);
 				var res = ips[0];
 				Debug.WriteLine($@"DNS query {host} answer {res}");
 				return res;
@@ -48,7 +50,7 @@ namespace Common
 			}
 		}
 
-		public static double? TCPing(IPAddress ip, int port = 80, int timeout = 1000)
+		public static async Task<double?> TCPing(IPAddress ip, int port = 80, int timeout = 1000)
 		{
 			if (ip == null)
 			{
@@ -58,20 +60,20 @@ namespace Common
 			{
 				var stopwatch = new Stopwatch();
 				stopwatch.Start();
-				var success = client.ConnectAsync(ip, port).Wait(timeout);
+				await Task.WhenAny(client.ConnectAsync(ip, port), Task.Delay(timeout));
 				stopwatch.Stop();
 				var t = stopwatch.Elapsed.TotalMilliseconds;
-				if (!success)
+				if (client.Connected == false)
 				{
-					Debug.WriteLine(@"超时");
+					Debug.WriteLine($@"TCPing {ip}:{port}:超时({t}ms > {timeout}ms)");
 					return null;
 				}
-				Debug.WriteLine("{0:0.00}ms", t);
+				Debug.WriteLine($@"TCPing {ip}:{port}:{t:0.00}ms");
 				return t;
 			}
 		}
 
-		public static PingStatus ICMPing(IPAddress ip, int timeout = 1000)
+		public static async Task<PingStatus> ICMPing(IPAddress ip, int timeout = 1000)
 		{
 			var res = new PingStatus();
 			if (ip == null)
@@ -80,7 +82,7 @@ namespace Common
 			}
 
 			var p1 = new Ping();
-			var reply = p1.Send(ip, timeout);
+			var reply = await p1.SendPingAsync(ip, timeout);
 			if (reply != null && reply.Status == IPStatus.Success)
 			{
 				res.Status = reply.Status;
@@ -111,12 +113,12 @@ namespace Common
 			return res;
 		}
 
-		public static double? IsPortOpen(IPAddress ip, int port = 80, int timeout = 1000, uint warmup = 1, uint n = 4)
+		public static async Task<double?> IsPortOpen(IPAddress ip, int port = 80, uint warmup = 1, uint n = 4, int timeout = 1000)
 		{
 			var times = new List<double>();
 			for (uint i = 0; i < warmup; ++i)
 			{
-				var result = TCPing(ip, port, timeout);
+				var result = await TCPing(ip, port, timeout);
 				if (result != null)
 				{
 					Debug.WriteLine($@"[Warmup]Connected to {ip}:{port}:{result}ms");
@@ -124,7 +126,7 @@ namespace Common
 			}
 			for (uint i = 0; i < n; ++i)
 			{
-				var result = TCPing(ip, port, timeout);
+				var result = await TCPing(ip, port, timeout);
 				if (result != null)
 				{
 					Debug.WriteLine($@"Connected to {ip}:{port}:{result}ms");
@@ -139,8 +141,16 @@ namespace Common
 			else
 			{
 				Debug.WriteLine($@"Average :{times.Average()}ms");
-				return Math.Round(times.Average(),2);
+				return Math.Round(times.Average(), 2);
 			}
+		}
+
+		public static async Task<IPAddress> GetPublicIpAddress()
+		{
+			var httpClient = new HttpClient();
+			var ip = await httpClient.GetStringAsync(@"https://api.ip.la");
+			Debug.WriteLine($@"Public IP address is: {ip}");
+			return IPAddress.Parse(ip);
 		}
 	}
 }
