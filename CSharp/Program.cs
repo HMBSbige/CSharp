@@ -41,7 +41,10 @@ namespace CSharp
 			Test(@"asf.bige0.vip", 443);
 			Test(@"www.baidu.com", 443);
 
-			Console.WriteLine(Environment.NewLine + @"END OF FILE");
+			Console.WriteLine(string.Join(", ", IPExt.Find("8.8.8.8")));
+			Console.WriteLine(string.Join(", ", IPExt.Find("118.28.8.8")));
+			Console.WriteLine(string.Join(", ", IPExt.Find("255.255.255.255")));
+			Console.WriteLine(Environment.NewLine + @"END OF CONSOLE" + Environment.NewLine);
 			Console.Read();
 		}
 	}
