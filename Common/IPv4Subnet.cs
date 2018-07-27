@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+using System.Net.Sockets;
+using System.Text.RegularExpressions;
 
 namespace Common
 {
@@ -13,6 +15,27 @@ namespace Common
 		public readonly IPAddress FirstIP;//IP段的第一个IP地址
 		public readonly IPAddress LastIP; //IP段的最后一个IP地址
 		#endregion
+
+		public static bool IsIpv4Address(ref string strIp)
+		{
+			try
+			{
+				strIp = strIp.Trim();
+				var tempIp = IPAddress.Parse(strIp);
+				return tempIp.ToString() == strIp && tempIp.AddressFamily == AddressFamily.InterNetwork;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
+		private static readonly Regex Ipv4Pattern = new Regex("^(([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){1}(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){2}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$");
+
+		public static bool IsIPv4Address(string input)
+		{
+			return Ipv4Pattern.IsMatch(input);
+		}
 
 		/// <summary>
 		/// IPv4地址转整数(小端)
