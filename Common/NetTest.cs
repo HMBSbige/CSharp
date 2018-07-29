@@ -148,9 +148,9 @@ namespace Common
 		public static async Task<IPAddress> GetPublicIpAddress()
 		{
 			var httpClient = new HttpClient();
-			var ip = await httpClient.GetStringAsync(@"https://api.ip.la");
+			var ip = await httpClient.GetStringAsync(@"http://api.ip.la");
 			Debug.WriteLine($@"Public IP address is: {ip}");
-			return IPAddress.Parse(ip);
+			return IPAddress.Parse(ip.Trim());
 		}
 	}
 }
