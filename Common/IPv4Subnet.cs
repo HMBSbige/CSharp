@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using System.Net.Sockets;
 using System.Text.RegularExpressions;
 
 namespace Common
@@ -77,6 +76,16 @@ namespace Common
 						Convert.ToString(bytesAddress[1], 2).PadLeft(8, '0')}{
 						Convert.ToString(bytesAddress[2], 2).PadLeft(8, '0')}{
 						Convert.ToString(bytesAddress[3], 2).PadLeft(8, '0')}";
+		}
+
+		public static int Hosts2CIDR(int hosts)
+		{
+			return 32 - Convert.ToInt32(Math.Log(hosts, 2));
+		}
+
+		public static int CIDR2Hosts(int CIDR)
+		{
+			return Convert.ToInt32(Math.Pow(2, 32 - Convert.ToInt32(CIDR)));
 		}
 
 		/// <summary>
