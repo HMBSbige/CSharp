@@ -1,51 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
+﻿using Common;
+using System;
 using System.Net;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using System.Numerics;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
-using Common;
+using System.Threading.Tasks;
 
 namespace CSharp
 {
-	internal static class Program
+	class Program
 	{
-		public static async void Test(string hostname, int port)
+		public static string GetPublicIp(IPAddress ip)
 		{
-			var ip = await NetTest.GetIP(hostname);
-			var res = await NetTest.IsPortOpen(ip, port);
-			if (res == null)
-			{
-				Console.WriteLine($@"{hostname}:{port}:Closed");
-			}
-			else
-			{
-				Console.WriteLine($@"{hostname}:{port}:{res}ms");
-			}
+			return NetTest.GetPublicIpAddress().Result.ToString();
 		}
 
-		private static async void OutputPublicIP()
-		{
-			var ip = await NetTest.GetPublicIpAddress();
-			Console.WriteLine($@"Public IP address is: {ip}");
-		}
 		private static void Main(string[] args)
 		{
-			OutputPublicIP();
-			Test(@"asf.bige0.vip", 443);
-			Test(@"www.baidu.com", 443);
+			
 
-			Console.WriteLine(string.Join(", ", IPExt.Find("8.8.8.8")));
-			Console.WriteLine(string.Join(", ", IPExt.Find("118.28.8.8")));
-			Console.WriteLine(string.Join(", ", IPExt.Find("255.255.255.255")));
-			Console.WriteLine(Environment.NewLine + @"END OF CONSOLE" + Environment.NewLine);
-			Console.Read();
+			//Console.WriteLine(@"Aborting...");
+
+			//Console.WriteLine(@"Aborted...");
+			//Console.WriteLine(@"Stop");
+			//Console.WriteLine(Environment.NewLine + @"END OF CONSOLE" + Environment.NewLine);
+			Console.ReadKey();
 		}
 	}
 }

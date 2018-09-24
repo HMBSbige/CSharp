@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoL-csharp", "WoL-csharp\Wo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FWin10", "FWin10\FWin10.csproj", "{1E57E25B-FE01-44A7-BC4A-F1A98B490626}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProxy", "WebProxy\WebProxy.csproj", "{17EE6D44-6521-448F-8306-54121B38BE16}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Common\Common.projitems*{0bd2f3d6-6efb-4bb5-8594-096c121a0f05}*SharedItemsImports = 4
@@ -47,6 +49,10 @@ Global
 		{1E57E25B-FE01-44A7-BC4A-F1A98B490626}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E57E25B-FE01-44A7-BC4A-F1A98B490626}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E57E25B-FE01-44A7-BC4A-F1A98B490626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17EE6D44-6521-448F-8306-54121B38BE16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17EE6D44-6521-448F-8306-54121B38BE16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17EE6D44-6521-448F-8306-54121B38BE16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17EE6D44-6521-448F-8306-54121B38BE16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
