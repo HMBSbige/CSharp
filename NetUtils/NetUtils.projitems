@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0317d665-e53c-4621-92bd-a27a6abd530c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>NetUtils</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IPExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IPFormatter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IPv4Subnet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MacFormatter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetCardInfoTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetConnectionInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetFlowService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetflowTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetPacketTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetProcessInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetProcessTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UPnPClient.cs" />
+  </ItemGroup>
+</Project>

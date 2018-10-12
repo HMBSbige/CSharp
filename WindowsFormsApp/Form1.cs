@@ -1,4 +1,5 @@
 ﻿using Common;
+using CommonControl;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +17,7 @@ namespace WindowsFormsApp
 			//HintTextBox
 			HintTextBox.SetCueText(textBox1, @"Test hint text");
 			//AdminButton
-			if (!AdminButton.IsAdmin())
+			if (!CheckPermission.IsAdmin())
 			{
 				Text += @"（标准用户权限）";
 				AdminButton.AddShieldToButton(button1);
@@ -31,7 +32,7 @@ namespace WindowsFormsApp
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			if (AdminButton.IsAdmin())
+			if (CheckPermission.IsAdmin())
 			{
 				DoAdminTask();
 			}
@@ -45,8 +46,7 @@ namespace WindowsFormsApp
 		{
 			try
 			{
-				var fileName = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) +
-							   @"\Microsoft\Windows\Start Menu\TEST.BG";
+				var fileName = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Microsoft\Windows\Start Menu\TEST.BG";
 				if (System.IO.File.Exists(fileName))
 				{
 					System.IO.File.Delete(fileName);

@@ -3,17 +3,17 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Common
+namespace CommonControl
 {
 	public static class HintTextBox
 	{
-		[DllImport("user32.dll", CharSet = CharSet.Auto)]
+		[DllImport(@"user32.dll", CharSet = CharSet.Auto)]
 		private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)] string lParam);
 
-		[DllImport("user32.dll")]
+		[DllImport(@"user32.dll")]
 		private static extern bool SendMessage(IntPtr hwnd, int msg, int wParam, StringBuilder lParam);
 
-		[DllImport("user32.dll")]
+		[DllImport(@"user32.dll")]
 		private static extern bool GetComboBoxInfo(IntPtr hwnd, ref COMBOBOXINFO pcbi);
 
 		[StructLayout(LayoutKind.Sequential)]

@@ -11,15 +11,12 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Benchmark.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BilibiliUID.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CheckPermission.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConcurrentList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConvertString.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CRC32.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IPExt.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IPv4Subnet.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MappingInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NetTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListTool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reg.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UPnPClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsVersion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WinProcess.cs" />
   </ItemGroup>

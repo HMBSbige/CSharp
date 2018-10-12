@@ -8,11 +8,6 @@ namespace CSharp
 {
 	class Program
 	{
-		public static string GetPublicIp(IPAddress ip)
-		{
-			return NetTest.GetPublicIpAddress().Result.ToString();
-		}
-
 		private static void Main(string[] args)
 		{
 			

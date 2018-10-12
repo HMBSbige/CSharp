@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 
-namespace UPnP
+namespace NetUtils
 {
 	class UPnPClient
 	{
@@ -71,7 +71,7 @@ namespace UPnP
 				{
 					if (enumerator.MoveNext())
 					{
-						mapping = (IStaticPortMapping) enumerator.Current;
+						mapping = (IStaticPortMapping)enumerator.Current;
 					}
 				}
 				catch

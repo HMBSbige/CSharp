@@ -9,7 +9,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace NetUtils
 {
 	internal static class NetTest
 	{

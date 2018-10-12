@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Security.Principal;
 
-namespace Common
+namespace CommonControl
 {
 	public static class AdminButton
 	{
@@ -17,17 +16,6 @@ namespace Common
 		internal static bool IsVistaOrHigher()
 		{
 			return Environment.OSVersion.Version.Major < 6;
-		}
-
-		/// <summary>
-		/// Checks if the process is elevated
-		/// </summary>
-		/// <returns>If is elevated</returns>
-		internal static bool IsAdmin()
-		{
-			var id = WindowsIdentity.GetCurrent();
-			var p = new WindowsPrincipal(id);
-			return p.IsInRole(WindowsBuiltInRole.Administrator);
 		}
 
 		/// <summary>

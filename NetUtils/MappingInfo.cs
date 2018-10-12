@@ -1,4 +1,4 @@
-﻿namespace UPnP
+﻿namespace NetUtils
 {
 	public class MappingInfo
 	{
