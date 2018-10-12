@@ -1,15 +1,21 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Windows.Forms;
-using Common;
 
-namespace AdminButtonDemo
+namespace WindowsFormsApp
 {
-	public partial class MainForm : Form
+	public partial class Form1 : Form
 	{
-		public MainForm()
+		public Form1()
 		{
 			InitializeComponent();
+		}
 
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			//HintTextBox
+			HintTextBox.SetCueText(textBox1, @"Test hint text");
+			//AdminButton
 			if (!AdminButton.IsAdmin())
 			{
 				Text += @"（标准用户权限）";
@@ -21,18 +27,26 @@ namespace AdminButtonDemo
 			}
 		}
 
-		public sealed override string Text
+		#region AdminButton
+
+		private void button1_Click(object sender, EventArgs e)
 		{
-			get => base.Text;
-			set => base.Text = value;
+			if (AdminButton.IsAdmin())
+			{
+				DoAdminTask();
+			}
+			else
+			{
+				AdminButton.RestartElevated();
+			}
 		}
 
 		private void DoAdminTask()
 		{
 			try
 			{
-				var fileName = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
-							   + @"\Microsoft\Windows\Start Menu\TEST.BG";
+				var fileName = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) +
+							   @"\Microsoft\Windows\Start Menu\TEST.BG";
 				if (System.IO.File.Exists(fileName))
 				{
 					System.IO.File.Delete(fileName);
@@ -54,21 +68,8 @@ namespace AdminButtonDemo
 			}
 		}
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-			if (AdminButton.IsAdmin())
-			{
-				DoAdminTask();
-			}
-			else
-			{
-				AdminButton.RestartElevated();
-			}
-		}
+		#endregion
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-			DoAdminTask();
-		}
+
 	}
 }

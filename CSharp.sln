@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csp
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common", "Common\Common.shproj", "{264C4DA2-7511-441A-AAA3-01D3207888C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminButtonDemo", "AdminButtonDemo\AdminButtonDemo.csproj", "{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeRemoteDesktopPort", "ChangeRemoteDesktopPort\ChangeRemoteDesktopPort.csproj", "{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoL-csharp", "WoL-csharp\WoL-csharp.csproj", "{8C620519-6695-469C-92F2-D9A1FD466F0E}"
@@ -16,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FWin10", "FWin10\FWin10.csproj", "{1E57E25B-FE01-44A7-BC4A-F1A98B490626}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProxy", "WebProxy\WebProxy.csproj", "{17EE6D44-6521-448F-8306-54121B38BE16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp", "WindowsFormsApp\WindowsFormsApp.csproj", "{500E1A87-54BC-409B-8185-A678D06077EE}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -33,10 +33,6 @@ Global
 		{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49D1CA27-728D-49C7-8BB1-38C5B7405E1B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,6 +49,10 @@ Global
 		{17EE6D44-6521-448F-8306-54121B38BE16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17EE6D44-6521-448F-8306-54121B38BE16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17EE6D44-6521-448F-8306-54121B38BE16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500E1A87-54BC-409B-8185-A678D06077EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500E1A87-54BC-409B-8185-A678D06077EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500E1A87-54BC-409B-8185-A678D06077EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500E1A87-54BC-409B-8185-A678D06077EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
