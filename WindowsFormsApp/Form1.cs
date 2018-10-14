@@ -1,6 +1,10 @@
 ﻿using Common;
 using CommonControl;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp
@@ -28,6 +32,8 @@ namespace WindowsFormsApp
 			{
 				Text += @"（管理员权限）";
 			}
+
+			dataGridView1.DataSource = Table;
 		}
 
 		#region AdminButton
@@ -73,52 +79,77 @@ namespace WindowsFormsApp
 
 		#endregion
 
-		BindingCollection<Data> table = new BindingCollection<Data>();
+		#region 绑定显示列表，并排序后不影响更新数据
+
+		private readonly BindingCollection<Data> Table = new BindingCollection<Data>();
+		private ConcurrentList<Data> realtable = new ConcurrentList<Data>();
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			var data = new Data();
-			table.Add(data);
+			for (var i = 0; i < 10; ++i)
+			{
+				var data = new Data
+				{
+						Index = i + 1
+				};
+				realtable.Add(data);
+			}
 
-			dataGridView1.DataSource = table;
-
+			ToShowTable(realtable);
+			button2.Enabled = false;
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void ToShowTable(IEnumerable<Data> table)
 		{
-			for (var i = 0; i < table.Count; ++i)
+			foreach (var item in table)
 			{
-				table[i].Index = i + 1;
+				if (Table.Any(x => x.Index == item.Index))
+				{
+					//foreach (var x in Table)
+					//{
+					//	if (item.Index == x.Index)
+					//	{
+					//		x.Latency = item.Latency;
+					//	}
+					//}
+				}
+				else
+				{
+					Table.Add(item);
+				}
 			}
 		}
 
 		private void button4_Click(object sender, EventArgs e)
 		{
-			
-			for (int i = 0; i < dataGridView1.Columns.Count; ++i)
+			Task.Run(() =>
 			{
-				dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-			}
-
-			foreach (var item in table)
-			{
-				if (item.Index == 2)
-				{
-					item.Latency = 100;
-					break;
-				}
-			}
-
-			for (int i = 0; i < dataGridView1.Columns.Count; ++i)
-			{
-				dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
-			}
+				realtable[0].Latency = 100;
+				Thread.Sleep(1000);
+				realtable[1].Latency = 524;
+				Thread.Sleep(1000);
+				realtable[2].Latency = 244;
+				Thread.Sleep(1000);
+				realtable[3].Latency = 1450;
+				Thread.Sleep(1000);
+				realtable[4].Latency = 444;
+				Thread.Sleep(1000);
+				realtable[5].Latency = 666;
+			});
 
 		}
 
-		private void button5_Click(object sender, EventArgs e)
+		private void button3_Click(object sender, EventArgs e)
 		{
-			
+			var data = new Data
+			{
+					Index = realtable.Count + 1
+			};
+			realtable.Add(data);
+			ToShowTable(realtable);
 		}
+		
+		#endregion
+
 	}
 }
