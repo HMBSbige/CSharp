@@ -34,6 +34,7 @@
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.dataGridView1 = new CommonControl.DoubleBufferDataGridView();
+			this.Column1 = new Common.TextAndImageColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -93,6 +94,8 @@
 			this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
 			this.dataGridView1.Location = new System.Drawing.Point(12, 68);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
@@ -101,6 +104,13 @@
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView1.Size = new System.Drawing.Size(546, 251);
 			this.dataGridView1.TabIndex = 2;
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "Column1";
+			this.Column1.Image = null;
+			this.Column1.Name = "Column1";
+			this.Column1.ReadOnly = true;
 			// 
 			// Form1
 			// 
@@ -130,6 +140,7 @@
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button3;
+		private Common.TextAndImageColumn Column1;
 	}
 }
 

@@ -1,11 +1,14 @@
-﻿using Common;
-using CommonControl;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common;
+using CommonControl;
 
 namespace WindowsFormsApp
 {
@@ -33,7 +36,9 @@ namespace WindowsFormsApp
 				Text += @"（管理员权限）";
 			}
 
+			dataGridView1.AutoGenerateColumns = false;
 			dataGridView1.DataSource = Table;
+			dataGridView1.Columns[0].DataPropertyName = @"Index";
 		}
 
 		#region AdminButton
@@ -55,14 +60,14 @@ namespace WindowsFormsApp
 			try
 			{
 				var fileName = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Microsoft\Windows\Start Menu\TEST.BG";
-				if (System.IO.File.Exists(fileName))
+				if (File.Exists(fileName))
 				{
-					System.IO.File.Delete(fileName);
+					File.Delete(fileName);
 					MessageBox.Show(@"TEST.BG 删除成功");
 				}
 				else
 				{
-					System.IO.File.Create(fileName).Close();
+					File.Create(fileName).Close();
 					MessageBox.Show(@"TEST.BG 创建成功");
 				}
 			}
@@ -90,13 +95,14 @@ namespace WindowsFormsApp
 			{
 				var data = new Data
 				{
-						Index = i + 1
+					Index = i + 1
 				};
 				realtable.Add(data);
 			}
 
 			ToShowTable(realtable);
-			button2.Enabled = false;
+
+			//button2.Enabled = false;
 		}
 
 		private void ToShowTable(IEnumerable<Data> table)
@@ -143,13 +149,12 @@ namespace WindowsFormsApp
 		{
 			var data = new Data
 			{
-					Index = realtable.Count + 1
+				Index = realtable.Count + 1
 			};
 			realtable.Add(data);
 			ToShowTable(realtable);
 		}
-		
-		#endregion
 
+		#endregion
 	}
 }
