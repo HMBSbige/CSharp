@@ -1,10 +1,8 @@
-﻿using System.Diagnostics;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace CommonControl
 {
-
 	[System.ComponentModel.DesignerCategory(@"Code")]
 	public class DoubleBufferDataGridView : DataGridView
 	{
@@ -13,6 +11,8 @@ namespace CommonControl
 			AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 			CellBorderStyle = DataGridViewCellBorderStyle.Single;
 			BackgroundColor = DefaultCellStyle.BackColor;
+			MultiSelect = false;
+			SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
 			SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 			UpdateStyles();
 		}
@@ -42,10 +42,10 @@ namespace CommonControl
 
 			if (Height <= h)
 			{
-				Debug.WriteLine($@"{clipBounds.X} {clipBounds.Y} {clipBounds.Width} {clipBounds.Height}");
-				Debug.WriteLine($@"{gridBounds.X} {gridBounds.Y} {gridBounds.Width} {gridBounds.Height}");
-				Debug.WriteLine($@"{h}");
-				Debug.WriteLine($@"{Height}");
+				//Debug.WriteLine($@"{clipBounds.X} {clipBounds.Y} {clipBounds.Width} {clipBounds.Height}");
+				//Debug.WriteLine($@"{gridBounds.X} {gridBounds.Y} {gridBounds.Width} {gridBounds.Height}");
+				//Debug.WriteLine($@"{h}");
+				//Debug.WriteLine($@"{Height}");
 
 				var loop = (Height - clipBounds.Y) / rowHeight;
 				for (var j = 0; j < loop + 1; ++j)
@@ -61,6 +61,24 @@ namespace CommonControl
 				{
 					graphics.DrawImage(rowImg, gridBounds.X, h + j * rowHeight);
 				}
+			}
+		}
+
+		protected override void OnCellMouseDown(DataGridViewCellMouseEventArgs e)
+		{
+			base.OnCellMouseDown(e);
+			if (e.RowIndex >= 0)
+			{
+				Rows[e.RowIndex].Selected = true;
+			}
+		}
+
+		protected override void OnColumnHeaderMouseClick(DataGridViewCellMouseEventArgs e)
+		{
+			base.OnColumnHeaderMouseClick(e);
+			if (SelectedCells.Count > 0)
+			{
+				Rows[SelectedCells[0].RowIndex].Selected = true;
 			}
 		}
 	}

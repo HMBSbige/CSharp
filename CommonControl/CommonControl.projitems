@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DoubleBufferListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HintTextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ProcessInfoTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SimpleJson.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TextAndImageColumn.cs" />
   </ItemGroup>
 </Project>

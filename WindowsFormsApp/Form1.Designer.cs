@@ -34,7 +34,7 @@
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.dataGridView1 = new CommonControl.DoubleBufferDataGridView();
-			this.Column1 = new Common.TextAndImageColumn();
+			this.button5 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -94,9 +94,8 @@
 			this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
 			this.dataGridView1.Location = new System.Drawing.Point(12, 68);
+			this.dataGridView1.MultiSelect = false;
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
 			this.dataGridView1.RowHeadersVisible = false;
@@ -105,18 +104,22 @@
 			this.dataGridView1.Size = new System.Drawing.Size(546, 251);
 			this.dataGridView1.TabIndex = 2;
 			// 
-			// Column1
+			// button5
 			// 
-			this.Column1.HeaderText = "Column1";
-			this.Column1.Image = null;
-			this.Column1.Name = "Column1";
-			this.Column1.ReadOnly = true;
+			this.button5.Location = new System.Drawing.Point(13, 364);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(75, 23);
+			this.button5.TabIndex = 7;
+			this.button5.Text = "button5";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
 			// Form1
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.button5);
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.button4);
 			this.Controls.Add(this.button2);
@@ -140,7 +143,7 @@
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button3;
-		private Common.TextAndImageColumn Column1;
+		private System.Windows.Forms.Button button5;
 	}
 }
 

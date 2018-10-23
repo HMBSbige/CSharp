@@ -30,7 +30,7 @@ namespace NetUtils
 			public int bytes;
 		}
 
-		public static async Task<IPAddress> GetIP(string host)
+		public static async Task<IPAddress> GetIPAsync(string host)
 		{
 			try
 			{
@@ -50,22 +50,58 @@ namespace NetUtils
 			}
 		}
 
-		public static async Task<string> GetHostName(IPAddress ip)
+		public static IPAddress GetIP(string host)
 		{
-			string hostname;
 			try
 			{
-				var hostsEntry = await Dns.GetHostEntryAsync(ip);
-				hostname = hostsEntry.HostName;
+				var ips = Dns.GetHostAddresses(host);
+				var res = ips[0];
+				Debug.WriteLine($@"DNS query {host} answer {res}");
+				return res;
 			}
-			catch
+			catch (Exception ex)
 			{
-				hostname = ip.ToString();
+				while (ex.InnerException != null)
+				{
+					ex = ex.InnerException;
+				}
+
+				Debug.WriteLine($@"ERROR:{ex.Message}");
+				return null;
 			}
-			return hostname;
 		}
 
-		public static async Task<double?> TCPing(IPAddress ip, int port = 80, int timeout = 1000)
+		private delegate IPHostEntry GetHostEntryHandler(string ip);
+		public static string GetHostName(IPAddress ip, int timeout)
+		{
+			try
+			{
+				var callback = new GetHostEntryHandler(Dns.GetHostEntry);
+				var result = callback.BeginInvoke(ip.ToString(), null, null);
+				if (result.AsyncWaitHandle.WaitOne(timeout, false))
+				{
+					return callback.EndInvoke(result).HostName;
+				}
+				else
+				{
+					return ip.ToString();
+				}
+			}
+			catch (Exception)
+			{
+				return ip.ToString();
+			}
+		}
+
+		[Obsolete]
+		public static async Task<string> GetHostNameAsync(IPAddress ip)
+		{
+			var res = ip.ToString();
+			await Task.Run(() => { res = Dns.Resolve(ip.ToString()).HostName; });
+			return res;
+		}
+
+		public static async Task<double?> TCPingAsync(IPAddress ip, int port = 80, int timeout = 1000)
 		{
 			if (ip == null)
 			{
@@ -83,6 +119,31 @@ namespace NetUtils
 					Debug.WriteLine($@"TCPing {ip}:{port}:超时({t}ms > {timeout}ms)");
 					return null;
 				}
+				Debug.WriteLine($@"TCPing {ip}:{port}:{t:0.00}ms");
+				return t;
+			}
+		}
+
+		public static double? TCPing(IPAddress ip, int port = 80, int timeout = 1000)
+		{
+			if (ip == null)
+			{
+				return null;
+			}
+
+			using (var client = new TcpClient())
+			{
+				var stopwatch = new Stopwatch();
+				stopwatch.Start();
+				client.ConnectAsync(ip, port).Wait(timeout);
+				stopwatch.Stop();
+				var t = stopwatch.Elapsed.TotalMilliseconds;
+				if (client.Connected == false)
+				{
+					Debug.WriteLine($@"TCPing {ip}:{port}:超时({t}ms > {timeout}ms)");
+					return null;
+				}
+
 				Debug.WriteLine($@"TCPing {ip}:{port}:{t:0.00}ms");
 				return t;
 			}
@@ -133,7 +194,7 @@ namespace NetUtils
 			var times = new List<double>();
 			for (uint i = 0; i < warmup; ++i)
 			{
-				var result = await TCPing(ip, port, timeout);
+				var result = await TCPingAsync(ip, port, timeout);
 				if (result != null)
 				{
 					Debug.WriteLine($@"[Warmup]Connected to {ip}:{port}:{result}ms");
@@ -141,7 +202,7 @@ namespace NetUtils
 			}
 			for (uint i = 0; i < n; ++i)
 			{
-				var result = await TCPing(ip, port, timeout);
+				var result = await TCPingAsync(ip, port, timeout);
 				if (result != null)
 				{
 					Debug.WriteLine($@"Connected to {ip}:{port}:{result}ms");

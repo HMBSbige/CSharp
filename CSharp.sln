@@ -21,6 +21,10 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NetUtils", "NetUtils\NetUti
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonControl", "CommonControl\CommonControl.shproj", "{3C6380FE-E713-4DF4-949D-E40512BA5B0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{D618FF85-C62C-43E7-A6AB-BCC292B943E3}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "dns", "dns\dns.shproj", "{51A04258-DDB7-4F6C-9544-F010485BA9C1}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		NetUtils\NetUtils.projitems*{0317d665-e53c-4621-92bd-a27a6abd530c}*SharedItemsImports = 13
@@ -29,9 +33,11 @@ Global
 		Common\Common.projitems*{264c4da2-7511-441a-aaa3-01d3207888c3}*SharedItemsImports = 13
 		CommonControl\CommonControl.projitems*{3c6380fe-e713-4df4-949d-e40512ba5b0d}*SharedItemsImports = 13
 		Common\Common.projitems*{3e6d7801-9525-4ff2-8c53-bb94bc2022eb}*SharedItemsImports = 4
+		dns\dns.projitems*{3e6d7801-9525-4ff2-8c53-bb94bc2022eb}*SharedItemsImports = 4
 		CommonControl\CommonControl.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
 		Common\Common.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
 		NetUtils\NetUtils.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
+		dns\dns.projitems*{51a04258-ddb7-4f6c-9544-f010485ba9c1}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +68,10 @@ Global
 		{500E1A87-54BC-409B-8185-A678D06077EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{500E1A87-54BC-409B-8185-A678D06077EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{500E1A87-54BC-409B-8185-A678D06077EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

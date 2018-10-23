@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Common
@@ -40,9 +41,7 @@ namespace Common
 					if (InheritedStyle != null)
 					{
 						var inheritedPadding = InheritedStyle.Padding;
-						DefaultCellStyle.Padding = new Padding(imageSize.Width,
-					inheritedPadding.Top, inheritedPadding.Right,
-					inheritedPadding.Bottom);
+						DefaultCellStyle.Padding = new Padding(imageSize.Width, inheritedPadding.Top, inheritedPadding.Right, inheritedPadding.Bottom);
 					}
 				}
 			}
@@ -69,20 +68,17 @@ namespace Common
 		{
 			get
 			{
-				if (OwningColumn == null ||
-		   OwningTextAndImageColumn == null)
+				if (OwningColumn == null || OwningTextAndImageColumn == null)
 				{
+					return imageValue;
+				}
 
-					return imageValue;
-				}
-				else if (imageValue != null)
+				if (imageValue != null)
 				{
 					return imageValue;
 				}
-				else
-				{
-					return OwningTextAndImageColumn.Image;
-				}
+
+				return OwningTextAndImageColumn.Image;
 			}
 			set
 			{
@@ -92,18 +88,16 @@ namespace Common
 					imageSize = value.Size;
 
 					var inheritedPadding = InheritedStyle.Padding;
-					Style.Padding = new Padding(imageSize.Width,
-				   inheritedPadding.Top, inheritedPadding.Right,
-				   inheritedPadding.Bottom);
+					Style.Padding = new Padding(imageSize.Width, inheritedPadding.Top, inheritedPadding.Right, inheritedPadding.Bottom);
 				}
 			}
 		}
-		protected override void Paint(Graphics graphics, Rectangle clipBounds,
-	   Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState,
-	   object value, object formattedValue, string errorText,
-	   DataGridViewCellStyle cellStyle,
-	   DataGridViewAdvancedBorderStyle advancedBorderStyle,
-	   DataGridViewPaintParts paintParts)
+		protected override void Paint(
+		Graphics graphics,
+		Rectangle clipBounds, Rectangle cellBounds,
+		int rowIndex, DataGridViewElementStates cellState,
+		object value, object formattedValue, string errorText,
+		DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
 		{
 			// Paint the base content
 			base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState,
@@ -117,7 +111,13 @@ namespace Common
 			   graphics.BeginContainer();
 
 				graphics.SetClip(cellBounds);
-				graphics.DrawImageUnscaled(Image, cellBounds.Location);
+
+				var loc = cellBounds.Location;
+
+				//居中显示图像
+				loc.Y += Math.Abs(Image.Height - cellBounds.Height) / 2;
+
+				graphics.DrawImageUnscaled(Image, loc);
 
 				graphics.EndContainer(container);
 			}

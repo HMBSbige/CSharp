@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Common
 {
@@ -81,10 +83,21 @@ namespace Common
 			lock (sync) m_list.RemoveAt(index);
 		}
 
+		public void RemoveAll(Predicate<T> match)
+		{
+			lock (sync) m_list.RemoveAll(match);
+		}
+
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			lock (sync)
 				return m_list.GetEnumerator();
+		}
+
+		public ReadOnlyCollection<T> AsReadOnly()
+		{
+			lock (sync)
+				return m_list.AsReadOnly();
 		}
 	}
 }

@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)BindingCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CheckPermission.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConcurrentList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Config.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConvertString.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CRC32.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListTool.cs" />

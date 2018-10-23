@@ -1,5 +1,7 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 
 namespace CommonControl
 {
@@ -30,6 +32,90 @@ namespace CommonControl
 			g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
 			g.Dispose();
 			return b;
+		}
+
+		public static Bitmap GetGrayImage(Bitmap image)
+		{
+			var result = image.Clone() as Bitmap;
+
+			for (var i = 0; i < image.Width; ++i)
+			{
+				for (var j = 0; j < image.Height; ++j)
+				{
+					var c = result.GetPixel(i, j);
+
+					var ret = (int)(c.R * 0.299 + c.G * 0.587 + c.B * 0.114);
+
+					result.SetPixel(i, j, Color.FromArgb(ret, ret, ret));
+				}
+			}
+
+			return result;
+		}
+
+		public static Bitmap GetBinaryzationImage(Bitmap image)
+		{
+			var result = image.Clone() as Bitmap;
+
+			var tempList = new List<int>();
+			for (var i = 0; i < result.Width; i++)
+			{
+				for (var j = 0; j < result.Height; j++)
+				{
+					if (result.GetPixel(i, j).A != 0)
+					{
+						tempList.Add(result.GetPixel(i, j).R);
+						tempList.Add(result.GetPixel(i, j).G);
+						tempList.Add(result.GetPixel(i, j).B);
+					}
+				}
+			}
+
+			var average = tempList.Average();
+
+
+			for (var i = 0; i < result.Width; i++)
+			{
+				for (var j = 0; j < result.Height; j++)
+				{
+					var color = result.GetPixel(i, j);
+					if (color.A != 0)
+					{
+						double v = (color.R + color.G + color.B);
+						if (v / 3 > average)
+						{
+							result.SetPixel(i, j, Color.White);
+						}
+						else
+						{
+							result.SetPixel(i, j, Color.Black);
+						}
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public static Image ToImage(Icon icon)
+		{
+			return Image.FromHbitmap(icon.ToBitmap().GetHbitmap());
+		}
+
+		public static Image ToImage(string filepath)
+		{
+			return Image.FromFile(filepath);
+		}
+
+		public static Bitmap ToBitmap(Image img)
+		{
+			return new Bitmap(img);
+
+		}
+
+		public static Icon ToIcon(Bitmap map)
+		{
+			return Icon.FromHandle(map.GetHicon());
 		}
 	}
 }
