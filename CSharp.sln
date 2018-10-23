@@ -33,9 +33,9 @@ Global
 		Common\Common.projitems*{264c4da2-7511-441a-aaa3-01d3207888c3}*SharedItemsImports = 13
 		CommonControl\CommonControl.projitems*{3c6380fe-e713-4df4-949d-e40512ba5b0d}*SharedItemsImports = 13
 		Common\Common.projitems*{3e6d7801-9525-4ff2-8c53-bb94bc2022eb}*SharedItemsImports = 4
-		dns\dns.projitems*{3e6d7801-9525-4ff2-8c53-bb94bc2022eb}*SharedItemsImports = 4
 		CommonControl\CommonControl.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
 		Common\Common.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
+		dns\dns.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
 		NetUtils\NetUtils.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
 		dns\dns.projitems*{51a04258-ddb7-4f6c-9544-f010485ba9c1}*SharedItemsImports = 13
 	EndGlobalSection

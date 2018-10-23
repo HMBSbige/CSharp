@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NetUtils;
 
 namespace WindowsFormsApp
 {
@@ -157,49 +157,13 @@ namespace WindowsFormsApp
 
 		#endregion
 
-		[DataContract]
-		class AppConfig
-		{
-			[DataMember(Name = @"MainFormHeight")] public int MainFormHeight;
-
-			[DataMember(Name = @"MainFormWidth")] public int MainFormWidth;
-
-			[DataMember(Name = @"DateListHeight")] public int DateListHeight;
-
-			[IgnoreDataMember]
-			public string JsonStr => SimpleJson.SimpleJson.SerializeObject(this);
-
-			[IgnoreDataMember] public readonly string Filepath;
-
-			[IgnoreDataMember] private static readonly UTF8Encoding Utf8WithoutBom = new UTF8Encoding(false);
-
-			public AppConfig(string filepath)
-			{
-				Filepath = filepath;
-				MainFormHeight = 717;
-				MainFormWidth = 928;
-				DateListHeight = 125;
-			}
-
-			public AppConfig()
-			{
-				MainFormHeight = 717;
-				MainFormWidth = 928;
-				DateListHeight = 125;
-			}
-		}
-
-		private readonly AppConfig Config = new AppConfig(@".\test.json");
-
 		private void button5_Click(object sender, EventArgs e)
 		{
-			using (var sr = new StreamReader(@".\test.json", new UTF8Encoding(false)))
-			{
-				var jsonStr = sr.ReadToEnd();
-				MessageBox.Show(jsonStr);
-				var config = SimpleJson.SimpleJson.DeserializeObject<AppConfig>(jsonStr);
-				MessageBox.Show(config.JsonStr);
-			}
+			//var ip = IPAddress.Parse("202.181.224.2");
+			var ip = IPAddress.Parse("1.1.1.1");
+			var str = IPv4Subnet.IsNonRoutableIpAddress(ip.ToString());
+
+			MessageBox.Show(str.ToString());
 		}
 	}
 }

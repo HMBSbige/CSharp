@@ -9,6 +9,7 @@
     <Import_RootNamespace>NetUtils</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DnsQuery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPExt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPv4Subnet.cs" />
