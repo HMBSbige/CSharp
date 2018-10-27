@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Steam;
+using System;
 
 namespace CSharp
 {
@@ -7,7 +7,8 @@ namespace CSharp
 	{
 		private static void Main(string[] args)
 		{
-
+			Console.WriteLine($@"{SteamClientHelper.GetActiveUserSteamId3()}");
+			
 			//var s = SimpleJson.SimpleJson.SerializeObject(stu);
 			//Console.WriteLine(s);
 			//Console.WriteLine(Environment.NewLine + @"END OF CONSOLE" + Environment.NewLine);
