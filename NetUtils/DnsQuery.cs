@@ -1,17 +1,9 @@
-﻿using DNS.Client;
-using DNS.Client.RequestResolver;
-using DNS.Protocol;
-using DNS.Protocol.ResourceRecords;
-using DNS.Protocol.Utils;
+﻿using OpenDNS;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using System.Threading.Tasks;
 
 namespace NetUtils
 {
@@ -19,25 +11,27 @@ namespace NetUtils
 	{
 		private delegate IPHostEntry GetHostEntryHandler(string ip);
 
-		public IPEndPoint[] DnsServers;
 		public int Timeout = 2000;
+		private readonly OpenDNS.DnsQuery _dns = new OpenDNS.DnsQuery();
 
 		public DnsQuery(IEnumerable<IPEndPoint> ips)
 		{
-			DnsServers = ips.ToArray();
+			foreach (var server in ips)
+			{
+				_dns.Servers.Add(server);
+			}
+
+			_dns.Timeout = Timeout;
+			_dns.RecursionDesired = true;
 		}
 
-		public DnsQuery()
-		{
-			var localDns = GetLocalDnsAddress();
-			DnsServers = IPFormatter.ToIPEndPoints(localDns, 53).ToArray();
-		}
+		public DnsQuery() : this(IPFormatter.ToIPEndPoints(GetLocalDnsAddress(), 53)) { }
 
 		private static bool IsWorkedInterface(NetworkInterface networkInterface)
 		{
 			if (networkInterface.OperationalStatus == OperationalStatus.Up
-				&& (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
-					networkInterface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211))
+			&& (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+				networkInterface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211))
 			{
 				return true;
 			}
@@ -69,177 +63,6 @@ namespace NetUtils
 				   select dns.Address;
 		}
 
-		private IRequest GetRequest(IPEndPoint dns, RecordType type, string queryStr)
-		{
-			var request = new ClientRequest(dns);
-			request.Questions.Add(new Question(Domain.FromString(queryStr), type));
-			request.RecursionDesired = true;
-			return request;
-		}
-
-		private static async Task<IResponse> Query(IPEndPoint dns, IRequest request, int timeout)
-		{
-			using (var udp = new UdpClient())
-			{
-				await udp.SendAsync(request.ToArray(), request.Size, dns).WithCancellationTimeout(timeout);
-
-				var result = await udp.ReceiveAsync().WithCancellationTimeout(timeout);
-
-				if (!result.RemoteEndPoint.Equals(dns))
-				{
-					throw new IOException(@"Remote endpoint mismatch");
-				}
-
-				var buffer = result.Buffer;
-				var response = Response.FromArray(buffer);
-
-				if (response.Truncated)
-				{
-					return await new NullRequestResolver().Resolve(request);
-				}
-
-				var clientResponse = new ClientResponse(request, response, buffer);
-				return clientResponse;
-			}
-		}
-
-		private static string Response2String(IResponse response, IPEndPoint dns)
-		{
-			if (response == null)
-			{
-				var str = $@"*No Response from {dns}";
-				Debug.WriteLine(str);
-				return string.Empty;
-			}
-
-			foreach (var question in response.Questions)
-			{
-				var records = response.AnswerRecords;
-				string str;
-
-				if (records.Count == 0)
-				{
-					if (question.Type == RecordType.PTR)
-					{
-						str = $@"*DNS query {IPFormatter.PTRName2IP(question.Name.ToString())} no answer via {dns}";
-					}
-					else
-					{
-						str = $@"*DNS query {question.Name} no answer via {dns}";
-					}
-					Debug.WriteLine(str);
-					return string.Empty;
-				}
-				else
-				{
-					foreach (var record in records)
-					{
-						if (record.Type == RecordType.A || record.Type == RecordType.AAAA)
-						{
-							var ipRecord = (IPAddressResourceRecord)record;
-							str = $@"DNS query {question.Name} answer {ipRecord.IPAddress} via {dns}";
-							Debug.WriteLine(str);
-							if (question.Type == record.Type)
-							{
-								return ipRecord.IPAddress.ToString();
-							}
-						}
-						else if (record.Type == RecordType.CNAME)
-						{
-							var cnameRecord = (CanonicalNameResourceRecord)record;
-							str = $@"DNS query {question.Name} answer {cnameRecord.CanonicalDomainName} via {dns}";
-							Debug.WriteLine(str);
-							if (question.Type == record.Type)
-							{
-								return cnameRecord.CanonicalDomainName.ToString();
-							}
-						}
-						else if (record.Type == RecordType.PTR)
-						{
-							var ptrRecord = (PointerResourceRecord)record;
-							str = $@"DNS query {IPFormatter.PTRName2IP(question.Name.ToString())} answer {ptrRecord.PointerDomainName} via {dns}";
-							Debug.WriteLine(str);
-							if (question.Type == record.Type)
-							{
-								return ptrRecord.PointerDomainName.ToString();
-							}
-						}
-						else
-						{
-							str = $@"DNS query {question.Name} {record.Type} via {dns}";
-							Debug.WriteLine(str);
-							Console.WriteLine(str);
-							throw new NotImplementedException();
-						}
-					}
-				}
-			}
-			return string.Empty;
-		}
-
-		public string Query(string queryStr, RecordType type)
-		{
-			var origin = queryStr;
-			if (RecordType.PTR == type)
-			{
-				queryStr = IPFormatter.IPStr2PTRName(queryStr);
-			}
-
-			if (string.IsNullOrWhiteSpace(queryStr))
-			{
-				throw new IOException(@"Domain Error!");
-			}
-
-			if (DnsServers.Length == 0)
-			{
-				throw new IOException(@"DNS Server Error!");
-			}
-
-			foreach (var dns in DnsServers)
-			{
-				var isTimeout = false;
-
-				var request = GetRequest(dns, type, queryStr);
-				IResponse response = null;
-				try
-				{
-					response = Task.Run(() => Query(dns, request, Timeout)).GetAwaiter().GetResult();
-				}
-				catch
-				{
-					isTimeout = true;
-				}
-
-				if (!isTimeout)
-				{
-					var tRes = Response2String(response, dns);
-					if (!string.IsNullOrWhiteSpace(tRes))
-					{
-						return tRes;
-					}
-				}
-			}
-
-			if (RecordType.PTR == type)
-			{
-				return origin;
-			}
-			else
-			{
-				return string.Empty;
-			}
-		}
-
-		public string Ptr(IPAddress ip)
-		{
-			return Ptr(ip.ToString());
-		}
-
-		public string Ptr(string queryStr)
-		{
-			return Query(queryStr, RecordType.PTR);
-		}
-
 		[Obsolete]
 		public static string GetHostName(IPAddress ip, int timeout)
 		{
@@ -262,19 +85,77 @@ namespace NetUtils
 			}
 		}
 
-		public IPAddress A(string hostname)
+		private string QueryString(string queryStr, Types type)
 		{
-			var ans = Query(hostname, RecordType.A);
-			if (string.IsNullOrWhiteSpace(ans))
+			_dns.Domain = queryStr;
+			_dns.QueryType = type;
+			if (_dns.Send())
 			{
-				return null;
+				var count = _dns.Response.Answers.Count;
+				if (count > 0)
+				{
+					for (var i = 0; i < count; ++i)
+					{
+						if (((ResourceRecord)_dns.Response.Answers[i]).Type != type)
+						{
+							continue;
+						}
+
+						return ((ResourceRecord)_dns.Response.Answers[i]).RText;
+					}
+				}
 			}
-			return IPAddress.Parse(ans);
+
+			return string.Empty;
 		}
 
-		public string AAAA(string hostname)
+		private IPAddress QueryAddress(string hostname, Types type)
 		{
-			return Query(hostname, RecordType.AAAA);
+			_dns.Domain = hostname;
+			_dns.QueryType = type;
+			if (_dns.Send())
+			{
+				var count = _dns.Response.Answers.Count;
+				if (count > 0)
+				{
+					for (var i = 0; i < count; ++i)
+					{
+						if (((ResourceRecord)_dns.Response.Answers[i]).Type != type)
+						{
+							continue;
+						}
+
+						return ((Address)_dns.Response.Answers[i]).IP;
+					}
+				}
+			}
+
+			return null;
+		}
+
+		public string Ptr(IPAddress ip)
+		{
+			return Ptr(ip.ToString());
+		}
+
+		public string Ptr(string queryStr)
+		{
+			return QueryString(IPFormatter.IPStr2PTRName(queryStr), Types.PTR);
+		}
+
+		public string CName(string hostname)
+		{
+			return QueryString(hostname, Types.CNAME);
+		}
+
+		public IPAddress A(string hostname)
+		{
+			return QueryAddress(hostname, Types.A);
+		}
+
+		public IPAddress AAAA(string hostname)
+		{
+			return QueryAddress(hostname, Types.AAAA);
 		}
 	}
 }

@@ -99,6 +99,6 @@
   <Import Project="..\CommonControl\CommonControl.projitems" Label="Shared" />
   <Import Project="..\Common\Common.projitems" Label="Shared" />
   <Import Project="..\NetUtils\NetUtils.projitems" Label="Shared" />
-  <Import Project="..\dns\dns.projitems" Label="Shared" />
+  <Import Project="..\OpenDNS\OpenDNS.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

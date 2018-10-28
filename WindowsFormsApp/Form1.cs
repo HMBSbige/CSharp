@@ -4,11 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NetUtils;
 
 namespace WindowsFormsApp
 {
@@ -159,11 +157,11 @@ namespace WindowsFormsApp
 
 		private void button5_Click(object sender, EventArgs e)
 		{
-			//var ip = IPAddress.Parse("202.181.224.2");
-			var ip = IPAddress.Parse("1.1.1.1");
-			var str = IPv4Subnet.IsNonRoutableIpAddress(ip.ToString());
-
-			MessageBox.Show(str.ToString());
+			var dns = new NetUtils.DnsQuery();
+			MessageBox.Show($@"{dns.CName(@"www.baidu.com")}
+{dns.A(@"www.google.com")}
+{dns.AAAA(@"www.google.com")}
+{dns.Ptr(@"202.141.162.123")}");
 		}
 	}
 }

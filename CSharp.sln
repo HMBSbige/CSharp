@@ -23,11 +23,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonControl", "CommonCont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{D618FF85-C62C-43E7-A6AB-BCC292B943E3}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "dns", "dns\dns.shproj", "{51A04258-DDB7-4F6C-9544-F010485BA9C1}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WPFControl", "WPFControl\WPFControl.shproj", "{5FD72376-47FF-4246-8967-3C24D6EFC65A}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Steam", "Steam\Steam.shproj", "{4B911DF6-9523-431B-9B4F-B60631EE7152}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "OpenDNS", "OpenDNS\OpenDNS.shproj", "{754DCB83-67CC-4551-A244-213BCA292F10}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -41,10 +41,10 @@ Global
 		Steam\Steam.projitems*{4b911df6-9523-431b-9b4f-b60631ee7152}*SharedItemsImports = 13
 		CommonControl\CommonControl.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
 		Common\Common.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
-		dns\dns.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
 		NetUtils\NetUtils.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
-		dns\dns.projitems*{51a04258-ddb7-4f6c-9544-f010485ba9c1}*SharedItemsImports = 13
+		OpenDNS\OpenDNS.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
 		WPFControl\WPFControl.projitems*{5fd72376-47ff-4246-8967-3c24d6efc65a}*SharedItemsImports = 13
+		OpenDNS\OpenDNS.projitems*{754dcb83-67cc-4551-a244-213bca292f10}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
