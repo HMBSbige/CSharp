@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)SteamClientHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SteamId.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VdfHelper.cs" />
   </ItemGroup>
 </Project>
