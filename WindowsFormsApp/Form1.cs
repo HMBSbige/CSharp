@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -157,11 +158,7 @@ namespace WindowsFormsApp
 
 		private void button5_Click(object sender, EventArgs e)
 		{
-			var dns = new NetUtils.DnsQuery();
-			MessageBox.Show($@"{dns.CName(@"www.baidu.com")}
-{dns.A(@"www.google.com")}
-{dns.AAAA(@"www.google.com")}
-{dns.Ptr(@"202.141.162.123")}");
+			textBox1.Text = NetUtils.Ntp.GetWebTime(new IPEndPoint(IPAddress.Parse(@"202.108.6.95"), 123)).ToString();
 		}
 	}
 }

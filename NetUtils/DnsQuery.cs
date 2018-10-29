@@ -63,7 +63,6 @@ namespace NetUtils
 				   select dns.Address;
 		}
 
-		[Obsolete]
 		public static string GetHostName(IPAddress ip, int timeout)
 		{
 			try
