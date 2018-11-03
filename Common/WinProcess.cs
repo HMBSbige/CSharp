@@ -1,14 +1,17 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace Common
 {
-	class WinProcess
+	public static class WinProcess
 	{
-		public static void Stop(string processname)
+		public static void Stop(string processName)
 		{
-			foreach (var exe in Process.GetProcesses())
+			var processes = Process.GetProcesses();
+			foreach (var exe in processes)
 			{
-				if (exe.ProcessName == processname)
+				if (string.Equals(exe.ProcessName, processName, StringComparison.CurrentCultureIgnoreCase))
 				{
 					exe.Kill();
 					exe.WaitForExit();
@@ -17,19 +20,20 @@ namespace Common
 			}
 		}
 
-		public static void Start(string processname)
+		public static void Start(string path, string arguments = @"")
 		{
 			var startInfo = new ProcessStartInfo
 			{
-				FileName = processname
+				FileName = path,
+				Arguments = arguments
 			};
 			Process.Start(startInfo);
 		}
 
-		public static void Restart(string processname)
+		public static void Restart(string path, string arguments = @"")
 		{
-			Stop(processname);
-			Start(processname);
+			Stop(Path.GetFileNameWithoutExtension(path));
+			Start(path, arguments);
 		}
 	}
 }
