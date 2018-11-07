@@ -29,6 +29,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Steam", "Steam\Steam.shproj
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "OpenDNS", "OpenDNS\OpenDNS.shproj", "{754DCB83-67CC-4551-A244-213BCA292F10}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vdf", "Vdf\Vdf.shproj", "{3E6C9A9F-8AA5-407D-8D75-1C96F40699D0}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		NetUtils\NetUtils.projitems*{0317d665-e53c-4621-92bd-a27a6abd530c}*SharedItemsImports = 13
@@ -36,8 +38,10 @@ Global
 		Common\Common.projitems*{1e57e25b-fe01-44a7-bc4a-f1a98b490626}*SharedItemsImports = 4
 		Common\Common.projitems*{264c4da2-7511-441a-aaa3-01d3207888c3}*SharedItemsImports = 13
 		CommonControl\CommonControl.projitems*{3c6380fe-e713-4df4-949d-e40512ba5b0d}*SharedItemsImports = 13
+		Vdf\Vdf.projitems*{3e6c9a9f-8aa5-407d-8d75-1c96f40699d0}*SharedItemsImports = 13
 		Common\Common.projitems*{3e6d7801-9525-4ff2-8c53-bb94bc2022eb}*SharedItemsImports = 4
 		Steam\Steam.projitems*{3e6d7801-9525-4ff2-8c53-bb94bc2022eb}*SharedItemsImports = 4
+		Vdf\Vdf.projitems*{3e6d7801-9525-4ff2-8c53-bb94bc2022eb}*SharedItemsImports = 4
 		Steam\Steam.projitems*{4b911df6-9523-431b-9b4f-b60631ee7152}*SharedItemsImports = 13
 		CommonControl\CommonControl.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4
 		Common\Common.projitems*{500e1a87-54bc-409b-8185-a678d06077ee}*SharedItemsImports = 4

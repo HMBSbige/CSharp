@@ -70,5 +70,6 @@
   </ItemGroup>
   <Import Project="..\Common\Common.projitems" Label="Shared" />
   <Import Project="..\Steam\Steam.projitems" Label="Shared" />
+  <Import Project="..\Vdf\Vdf.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
