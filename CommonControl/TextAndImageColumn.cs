@@ -125,4 +125,5 @@ namespace Common
 
 		private TextAndImageColumn OwningTextAndImageColumn => OwningColumn as TextAndImageColumn;
 	}
+
 }

@@ -33,8 +33,10 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
-			this.dataGridView1 = new CommonControl.DoubleBufferDataGridView();
 			this.button5 = new System.Windows.Forms.Button();
+			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.button6 = new System.Windows.Forms.Button();
+			this.dataGridView1 = new CommonControl.DoubleBufferDataGridView();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -57,7 +59,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(12, 325);
+			this.button2.Location = new System.Drawing.Point(12, 184);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(75, 23);
 			this.button2.TabIndex = 3;
@@ -67,7 +69,7 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(174, 325);
+			this.button4.Location = new System.Drawing.Point(174, 184);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(75, 23);
 			this.button4.TabIndex = 5;
@@ -77,13 +79,46 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(93, 325);
+			this.button3.Location = new System.Drawing.Point(93, 184);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(75, 23);
 			this.button3.TabIndex = 6;
 			this.button3.Text = "添加新行";
 			this.button3.UseVisualStyleBackColor = true;
 			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
+			// button5
+			// 
+			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button5.Location = new System.Drawing.Point(12, 468);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(75, 23);
+			this.button5.TabIndex = 7;
+			this.button5.Text = "button5";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
+			// textBox2
+			// 
+			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.textBox2.Location = new System.Drawing.Point(12, 213);
+			this.textBox2.Multiline = true;
+			this.textBox2.Name = "textBox2";
+			this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.textBox2.Size = new System.Drawing.Size(776, 249);
+			this.textBox2.TabIndex = 8;
+			// 
+			// button6
+			// 
+			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button6.Location = new System.Drawing.Point(94, 469);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(75, 23);
+			this.button6.TabIndex = 9;
+			this.button6.Text = "button6";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
 			// 
 			// dataGridView1
 			// 
@@ -101,24 +136,16 @@
 			this.dataGridView1.RowHeadersVisible = false;
 			this.dataGridView1.RowTemplate.Height = 23;
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridView1.Size = new System.Drawing.Size(546, 251);
+			this.dataGridView1.Size = new System.Drawing.Size(258, 110);
 			this.dataGridView1.TabIndex = 2;
-			// 
-			// button5
-			// 
-			this.button5.Location = new System.Drawing.Point(13, 364);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(75, 23);
-			this.button5.TabIndex = 7;
-			this.button5.Text = "button5";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(800, 503);
+			this.Controls.Add(this.button6);
+			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.button5);
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.button4);
@@ -144,6 +171,8 @@
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.Button button6;
 	}
 }
 

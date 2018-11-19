@@ -31,6 +31,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "OpenDNS", "OpenDNS\OpenDNS.
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vdf", "Vdf\Vdf.shproj", "{3E6C9A9F-8AA5-407D-8D75-1C96F40699D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HighDpiDemo", "HighDpiDemo\HighDpiDemo.csproj", "{AA72CA15-F562-4553-9576-5C217256081F}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		NetUtils\NetUtils.projitems*{0317d665-e53c-4621-92bd-a27a6abd530c}*SharedItemsImports = 13
@@ -83,6 +85,10 @@ Global
 		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA72CA15-F562-4553-9576-5C217256081F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA72CA15-F562-4553-9576-5C217256081F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA72CA15-F562-4553-9576-5C217256081F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA72CA15-F562-4553-9576-5C217256081F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
