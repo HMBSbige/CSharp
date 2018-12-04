@@ -51,6 +51,7 @@
     <Compile Include="MagicSquare4.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -70,7 +71,7 @@
     </COMReference>
   </ItemGroup>
   <Import Project="..\Common\Common.projitems" Label="Shared" />
-  <Import Project="..\Steam\Steam.projitems" Label="Shared" />
-  <Import Project="..\Vdf\Vdf.projitems" Label="Shared" />
+  <Import Project="..\NetUtils\NetUtils.projitems" Label="Shared" />
+  <Import Project="..\OpenDNS\OpenDNS.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

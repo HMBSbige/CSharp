@@ -10,18 +10,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DnsQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpContentExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPExt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPv4Subnet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MacFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MappingInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NetCardInfoTool.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NetConnectionInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NetFlowService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NetflowTool.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NetPacketTool.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NetProcessInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NetProcessTool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ntp.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UPnPClient.cs" />
