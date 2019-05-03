@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csproj", "{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common", "Common\Common.shproj", "{264C4DA2-7511-441A-AAA3-01D3207888C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeRemoteDesktopPort", "ChangeRemoteDesktopPort\ChangeRemoteDesktopPort.csproj", "{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}"
@@ -15,15 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FWin10", "FWin10\FWin10.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProxy", "WebProxy\WebProxy.csproj", "{17EE6D44-6521-448F-8306-54121B38BE16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp", "WindowsFormsApp\WindowsFormsApp.csproj", "{500E1A87-54BC-409B-8185-A678D06077EE}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NetUtils", "NetUtils\NetUtils.shproj", "{0317D665-E53C-4621-92BD-A27A6ABD530C}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonControl", "CommonControl\CommonControl.shproj", "{3C6380FE-E713-4DF4-949D-E40512BA5B0D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{D618FF85-C62C-43E7-A6AB-BCC292B943E3}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WPFControl", "WPFControl\WPFControl.shproj", "{5FD72376-47FF-4246-8967-3C24D6EFC65A}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Steam", "Steam\Steam.shproj", "{4B911DF6-9523-431B-9B4F-B60631EE7152}"
 EndProject
@@ -33,15 +25,17 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vdf", "Vdf\Vdf.shproj", "{3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HighDpiDemo", "HighDpiDemo\HighDpiDemo.csproj", "{AA72CA15-F562-4553-9576-5C217256081F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csproj", "{FF5CDBB1-2F2E-47DA-97C9-B68EED9B26A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{1832D2C7-D214-41F4-B6D3-3EF2E2C35D39}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		NetUtils\NetUtils.projitems*{0317d665-e53c-4621-92bd-a27a6abd530c}*SharedItemsImports = 13
 		Common\Common.projitems*{0bd2f3d6-6efb-4bb5-8594-096c121a0f05}*SharedItemsImports = 4
 		Common\Common.projitems*{1e57e25b-fe01-44a7-bc4a-f1a98b490626}*SharedItemsImports = 4
+		Common\Common.projitems*{264c4da2-7511-441a-aaa3-01d3207888c3}*SharedItemsImports = 13
 		CommonControl\CommonControl.projitems*{3c6380fe-e713-4df4-949d-e40512ba5b0d}*SharedItemsImports = 13
-		Common\Common.projitems*{3e6d7801-9525-4ff2-8c53-bb94bc2022eb}*SharedItemsImports = 4
-		NetUtils\NetUtils.projitems*{3e6d7801-9525-4ff2-8c53-bb94bc2022eb}*SharedItemsImports = 4
-		OpenDNS\OpenDNS.projitems*{3e6d7801-9525-4ff2-8c53-bb94bc2022eb}*SharedItemsImports = 4
 		OpenDNS\OpenDNS.projitems*{754dcb83-67cc-4551-a244-213bca292f10}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +43,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E6D7801-9525-4FF2-8C53-BB94BC2022EB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BD2F3D6-6EFB-4BB5-8594-096C121A0F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,18 +59,18 @@ Global
 		{17EE6D44-6521-448F-8306-54121B38BE16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17EE6D44-6521-448F-8306-54121B38BE16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17EE6D44-6521-448F-8306-54121B38BE16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{500E1A87-54BC-409B-8185-A678D06077EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{500E1A87-54BC-409B-8185-A678D06077EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{500E1A87-54BC-409B-8185-A678D06077EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{500E1A87-54BC-409B-8185-A678D06077EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D618FF85-C62C-43E7-A6AB-BCC292B943E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA72CA15-F562-4553-9576-5C217256081F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA72CA15-F562-4553-9576-5C217256081F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA72CA15-F562-4553-9576-5C217256081F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA72CA15-F562-4553-9576-5C217256081F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF5CDBB1-2F2E-47DA-97C9-B68EED9B26A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF5CDBB1-2F2E-47DA-97C9-B68EED9B26A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF5CDBB1-2F2E-47DA-97C9-B68EED9B26A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF5CDBB1-2F2E-47DA-97C9-B68EED9B26A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1832D2C7-D214-41F4-B6D3-3EF2E2C35D39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1832D2C7-D214-41F4-B6D3-3EF2E2C35D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1832D2C7-D214-41F4-B6D3-3EF2E2C35D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1832D2C7-D214-41F4-B6D3-3EF2E2C35D39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

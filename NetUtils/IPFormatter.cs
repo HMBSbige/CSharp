@@ -9,11 +9,9 @@ namespace NetUtils
 {
 	public static class IPFormatter
 	{
-		private static readonly Regex Ipv4Pattern = new Regex("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){1}(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){2}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$");
-
 		public static bool IsIPv4Address(string input)
 		{
-			return Ipv4Pattern.IsMatch(input);
+			return IPAddress.TryParse(input, out var ip) && IsIPv4Address(ip);
 		}
 
 		public static bool IsIPv4Address(IPAddress ipAddress)
@@ -100,6 +98,12 @@ namespace NetUtils
 
 			var s = str.Split('.');
 			return $@"{s[3]}.{s[2]}.{s[1]}.{s[0]}.in-addr.arpa";
+		}
+
+		public static string GetIPv4(string str)
+		{
+			var ip = new Regex(@"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)");
+			return ip.Match(str).Value;
 		}
 	}
 }

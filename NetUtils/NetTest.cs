@@ -131,7 +131,7 @@ namespace NetUtils
 				return null;
 			}
 
-			using (var client = new TcpClient())
+			using (var client = new TcpClient(/*AddressFamily.InterNetworkV6*/))
 			{
 				var stopwatch = new Stopwatch();
 				stopwatch.Start();
