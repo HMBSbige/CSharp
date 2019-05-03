@@ -42,7 +42,10 @@ namespace CSharp
 
 		private static void Main(string[] args)
 		{
-
+			var t = new GithubRelease(@"HMBSbige", @"ShadowsocksR-Windows");
+			var res = t.GetLatestAsnyc().Result;
+			Console.WriteLine(res.Item1);
+			Console.WriteLine(res.Item2);
 			Console.WriteLine(Environment.NewLine + @"END OF CONSOLE" + Environment.NewLine);
 			Console.ReadKey();
 		}
