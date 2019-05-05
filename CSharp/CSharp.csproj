@@ -5,4 +5,12 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vdf\Gameloop.Vdf\Gameloop.Vdf.csproj" />
+  </ItemGroup>
+
 </Project>
