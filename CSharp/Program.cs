@@ -42,7 +42,8 @@ namespace CSharp
 
 		private static void Main(string[] args)
 		{
-			
+			DNSPoison.Test(@"D:\Downloads\2.txt");
+
 
 			Console.WriteLine(Environment.NewLine + @"END OF CONSOLE" + Environment.NewLine);
 			Console.ReadKey();

@@ -13,4 +13,6 @@
     <ProjectReference Include="..\Vdf\Gameloop.Vdf\Gameloop.Vdf.csproj" />
   </ItemGroup>
 
+  <Import Project="..\OpenDNS\OpenDNS.projitems" Label="Shared" />
+
 </Project>
