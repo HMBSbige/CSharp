@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,13 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DnsClient" Version="1.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Vdf\Gameloop.Vdf\Gameloop.Vdf.csproj" />
-  </ItemGroup>
-
-  <Import Project="..\OpenDNS\OpenDNS.projitems" Label="Shared" />
 
 </Project>

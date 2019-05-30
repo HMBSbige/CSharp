@@ -1,6 +1,6 @@
-﻿using OpenDNS;
+﻿using DnsClient;
+using DnsClient.Protocol;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -45,20 +45,13 @@ namespace CSharp
 		{
 			try
 			{
-				var dnsClient = new DnsQuery
+				var endpoint = new IPEndPoint(IPAddress.Parse(@"8.8.8.8"), 53);
+				var client = new LookupClient(endpoint)
 				{
-					Servers = new ArrayList { new IPEndPoint(IPAddress.Parse(@"8.8.8.8"), 53) },
-					Domain = @"www.google.com",
+					UseCache = false
 				};
-				if (dnsClient.Send())
-				{
-					if (dnsClient.Response.Answers[0] is Address ip)
-					{
-						return ip.IP;
-					}
-				}
+				return client.Query(@"www.google.com", QueryType.A).Answers.OfType<ARecord>().FirstOrDefault()?.Address;
 
-				return null;
 			}
 			catch
 			{
@@ -85,12 +78,15 @@ namespace CSharp
 		{
 			var list = new SortedSet<uint>();
 
-			var originStr = File.ReadAllLines(path);
-			foreach (var s in originStr)
+			if (File.Exists(path))
 			{
-				if (IPAddress.TryParse(s, out var ip))
+				var originStr = File.ReadAllLines(path);
+				foreach (var s in originStr)
 				{
-					list.Add(IPv42UintBE(ip));
+					if (IPAddress.TryParse(s, out var ip))
+					{
+						list.Add(IPv42UintBE(ip));
+					}
 				}
 			}
 

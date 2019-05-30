@@ -1,8 +1,9 @@
-﻿using System;
-using System.Windows.Forms;
-using ChangeRemoteDesktopPort.Properties;
-using Common;
+﻿using ChangeRemoteDesktopPort.Properties;
+using FrameworkLib.Controls;
+using FrameworkLib.Utils;
 using Microsoft.Win32;
+using System;
+using System.Windows.Forms;
 
 namespace ChangeRemoteDesktopPort
 {
@@ -14,7 +15,7 @@ namespace ChangeRemoteDesktopPort
 		public ChangeRemoteDesktopPort()
 		{
 			InitializeComponent();
-			if (!AdminButton.IsAdmin())
+			if (!CheckPermission.IsAdmin())
 			{
 				AdminButton.AddShieldToButton(button1);
 			}
@@ -34,7 +35,7 @@ namespace ChangeRemoteDesktopPort
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			if (AdminButton.IsAdmin())
+			if (CheckPermission.IsAdmin())
 			{
 				ChangePort();
 			}

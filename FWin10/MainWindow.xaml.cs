@@ -1,8 +1,8 @@
-﻿using System;
+﻿using FrameworkLib.Utils;
+using Microsoft.Win32;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using Common;
-using Microsoft.Win32;
 
 namespace FWin10
 {
